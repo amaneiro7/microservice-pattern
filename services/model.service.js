@@ -21,7 +21,7 @@ class ModelService {
 
   async findOne(id) {
     const model = await models.Models.findByPk(id, {
-      include: ['category', 'branch', 'specs']
+      include: ['item','category', 'branch', 'specs']
     });
     if (!model) {
       throw boom.notFound('modelo no existe')

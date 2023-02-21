@@ -1,8 +1,8 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const CATEGORY_TABLE = 'category';
+const BRANCH_TABLE = 'branch';
 
-const CategorySchema = {
+const BranchSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -14,14 +14,6 @@ const CategorySchema = {
     type: DataTypes.STRING,
     unique: true,
   },
-  serial: {
-    allowNull: true,
-    type: DataTypes.STRING,
-  },
-  activo: {
-    allowNull: true,
-    type: DataTypes.STRING,
-  },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,
@@ -30,9 +22,9 @@ const CategorySchema = {
   }
 };
 
-class Category extends Model {
+class Branch extends Model {
   static associate(models) {
-    this.hasOne(models.Branch, {
+    this.hasOne(models.Model, {
       as: 'category',
       foreignKey: 'categoryId'
     })
@@ -41,11 +33,11 @@ class Category extends Model {
   static config(sequelize) {
     return {
       sequelize,
-      tableName: CATEGORY_TABLE,
-      modelName: 'Category',
+      tableName: BRANCH_TABLE,
+      modelName: 'Branch',
       timestamps: false,
     }
   }
 };
 
-module.exports = { CategorySchema, CATEGORY_TABLE, Category}
+module.exports = { BranchSchema, BRANCH_TABLE, Branch}

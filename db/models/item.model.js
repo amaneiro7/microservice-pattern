@@ -1,38 +1,35 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const CATEGORY_TABLE = 'category';
+const ITEM_TABLE = 'item';
 
-const CategorySchema = {
+const ItemSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
     type: DataTypes.INTEGER
   },
-  name: {
-    allowNull: false,
-    type: DataTypes.STRING,
-    unique: true,
-  },
   serial: {
     allowNull: true,
     type: DataTypes.STRING,
+    unique: true,
   },
   activo: {
     allowNull: true,
     type: DataTypes.STRING,
+    unique: true,
   },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,
     field: 'created_at',
     defaultValue: Sequelize.NOW
-  }
+  },
 };
 
-class Category extends Model {
+class Item extends Model {
   static associate(models) {
-    this.hasOne(models.Branch, {
+    this.hasOne(models.Category, {
       as: 'category',
       foreignKey: 'categoryId'
     })
@@ -41,11 +38,11 @@ class Category extends Model {
   static config(sequelize) {
     return {
       sequelize,
-      tableName: CATEGORY_TABLE,
-      modelName: 'Category',
+      tableName: ITEM_TABLE,
+      modelName: 'Item',
       timestamps: false,
     }
   }
 };
 
-module.exports = { CategorySchema, CATEGORY_TABLE, Category}
+module.exports = { ItemSchema, ITEM_TABLE, Item}

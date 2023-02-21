@@ -20,7 +20,7 @@ class CategoryService {
 
   async findOne(id) {
     const specs = await models.Specs.findByPk(id, {
-      include: ['branch', 'model', 'specs']
+      include: ['item','branch', 'model', 'specs']
     });
     if (!specs) {
       throw boom.notFound('categoria no existe')

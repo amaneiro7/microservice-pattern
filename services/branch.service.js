@@ -20,7 +20,7 @@ class BranchService {
 
   async findOne(id) {
     const branch = await models.Branch.findByPk(id, {
-      include: ['category', 'model', 'specs']
+      include: ['item','category', 'model', 'specs']
     });
     if (!branch) {
       throw boom.notFound('no existe esa Marca')
