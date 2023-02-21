@@ -239,3 +239,7 @@ mysql_data
 
 # End of https://www.toptal.com/developers/gitignore/api/node,visualstudiocode,windows,linux,macos
 
+#guias
+migraciones.txt
+Configurar las variables de entorno.txt
+guia paso a paso.txt
