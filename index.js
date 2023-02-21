@@ -6,7 +6,7 @@ const { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('
 logErrors
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 app.use(express.json());
 
@@ -31,3 +31,5 @@ app.use(errorHandler);
 
 
 app.listen(port);
+
+// how to create a function to fetch a api?

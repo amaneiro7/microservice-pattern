@@ -36,11 +36,7 @@ const ModelSchema = {
 
 class Models extends Model {
   static associate(models) {
-    this.belongsTo(models.Branch, { as: 'branch' }),
-    this.hasMany(models.ComputerSpecs, {
-      as: 'computer_specs',
-      foreignKey: 'modelId'
-    })
+    this.belongsTo(models.Branch, { as: 'branch' })
   }
 
   static config(sequelize) {
