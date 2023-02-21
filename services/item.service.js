@@ -14,12 +14,16 @@ class ItemService {
   };
 //GET
   async find() {
-    const items = await models.Item.findAll();
+    const items = await models.Item.findAll({
+      include: ['category', 'branch', 'models']
+    });
     return items;
   }
 
   async findOne(id) {
-    const item = await models.Item.findByPk(id);
+    const item = await models.Item.findByPk(id,{
+      include: ['category', 'branch', 'models']
+    });
     if (!item) {
       throw boom.notFound('item no existe')
     }
