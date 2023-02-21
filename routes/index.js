@@ -3,17 +3,16 @@ const categoriesRouter = require('./categories.router');
 const itemsRouter = require('./items.router');
 const branchRouter = require("./branch.router.js");
 const modelsRouter = require("./model.router.js");
-const computerSpecsRouter = require("./computerSpecs.router.js");
 
 
 function routerApi(app) {
   const router = express.Router();
   app.use('/api/v1', router)
-  router.use('/items', itemsRouter);
   router.use('/categories', categoriesRouter);
+  router.use('/items', itemsRouter);
   router.use('/branch', branchRouter);
   router.use('/models', modelsRouter);
-  router.use('/specs', computerSpecsRouter);
+
 };
 
 module.exports = routerApi;
