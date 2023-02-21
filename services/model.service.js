@@ -15,12 +15,16 @@ class ModelService {
 
   //GET
   async find() {
-    const models = await models.Models.findAll();
-    return models
+    const model = await models.Models.findAll({
+      include: ['branch']
+    });
+    return model
   }
 
   async findOne(id) {
-    const model = await models.Models.findByPk(id);
+    const model = await models.Models.findByPk(id, {
+      include: ['branch']
+    });
     if (!model) {
       throw boom.notFound('modelo no existe')
     }

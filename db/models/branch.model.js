@@ -24,15 +24,14 @@ const BranchSchema = {
 
 class Branch extends Model {
   static associate(models) {
-    this.hasMany(models.Category, {
-      as: 'category',
-      foreignKey: 'categoryId'
+    this.hasMany(models.Item, {
+      as: 'item',
+      foreignKey: 'branchId'
     }),
-    this.hasMany(models.Model, {
+    this.hasMany(models.Models, {
       as: 'model',
-      foreignKey: 'modelId'
+      foreignKey: 'branchId'
     })
-
   }
 
   static config(sequelize) {

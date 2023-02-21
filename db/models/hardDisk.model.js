@@ -1,9 +1,9 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const { BRANCH_TABLE } = require('./branch.model');
+const { COMPUTER_SPECS_TABLE } = require('./computerSpecs.model');
 
-const MODEL_TABLE = 'model';
+const HARD_DISK_TABLE = 'hard_disk';
 
-const ModelSchema = {
+const HardDiskSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -11,7 +11,7 @@ const ModelSchema = {
     type: DataTypes.INTEGER
   },
   name: {
-    allowNull: true,
+    allowNull: false,
     type: DataTypes.STRING,
     unique: true,
   },
@@ -21,36 +21,31 @@ const ModelSchema = {
     field: 'created_at',
     defaultValue: Sequelize.NOW
   },
-  branchId: {
-    field: 'branch_id',
-    allowNull: false,
+  computerSpecs: {
+    field: 'computer_specs_id',
+    allowNull: true,
     type: DataTypes.INTEGER,
     references: {
-      model: BRANCH_TABLE,
+      model: COMPUTER_SPECS_TABLE,
       key: 'id'
     },
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL'
   }
 };
-
-class Models extends Model {
+class HardDisk extends Model {
   static associate(models) {
-    this.belongsTo(models.Branch, { as: 'branch' }),
-    this.hasMany(models.ComputerSpecs, {
-      as: 'computer_specs',
-      foreignKey: 'modelId'
-    })
+    this.belongsTo(models.ComputerSpecs, {as: 'computer_specs'})
   }
 
   static config(sequelize) {
     return {
       sequelize,
-      tableName: MODEL_TABLE,
-      modelName: 'Models',
+      tableName: HARD_DISK_TABLE,
+      modelName: 'HardDisk',
       timestamps: false,
     }
   }
 };
 
-module.exports = { ModelSchema, MODEL_TABLE, Models}
+module.exports = { HardDiskSchema, HARD_DISK_TABLE, HardDisk}

@@ -1,5 +1,4 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const { BRANCH_TABLE } = require('./branch.mode');
 
 const CATEGORY_TABLE = 'category';
 
@@ -21,25 +20,13 @@ const CategorySchema = {
     field: 'created_at',
     defaultValue: Sequelize.NOW
   },
-  branchId: {
-    field: 'branch_id',
-    allowNull: false,
-    type: DataTypes.INTEGER,
-    references: {
-      model: BRANCH_TABLE,
-      key: 'id'
-    },
-    onUpdate: 'CASCADE',
-    onDelete: 'SET NULL'
-  }
 };
 class Category extends Model {
   static associate(models) {
     this.hasMany(models.Item, {
-      as: 'items',
+      as: 'item',
       foreignKey: 'categoryId'
-    }),
-    this.belongsTo(models.Branch, {as: 'branch'})
+    })
   }
 
   static config(sequelize) {

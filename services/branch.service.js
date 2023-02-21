@@ -14,7 +14,9 @@ class BranchService {
   };
 //GET
   async find() {
-    const branchs = await models.Branch.findAll();
+    const branchs = await models.Branch.findAll({
+      include: ['models']
+    });
     return branchs;
   }
 
