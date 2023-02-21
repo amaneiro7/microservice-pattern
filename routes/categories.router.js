@@ -1,7 +1,7 @@
-import { express } from "express";
-import CategoryService from "../services/category.service";
-import { validatorHandler } from "../middlewares/validator.handler";
-import { getCategorySchema, createCategorySchema, updateCategorySchema } from "../schemas/category.schema";
+const express = require('express');
+const CategoryService = require("../services/category.service.js");
+const validatorHandler = require("../middlewares/validator.handler.js");
+const { createCategorySchema, getCategorySchema, updateCategorySchema } = require("../schemas/branch.schema.js");
 
 const router = express.Router();
 const service = new CategoryService();
@@ -69,4 +69,4 @@ router.delete('/:id',
     }
   });
 
-export default router;
+module.exports = router;

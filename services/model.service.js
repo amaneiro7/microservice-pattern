@@ -1,5 +1,5 @@
-import { boom } from "@hapi/boom ";
-import { models } from "../libs/sequelize";
+const boom = require('@hapi/boom');
+const { models } = require('../libs/sequelize');
 
 class ModelService {
 
@@ -44,4 +44,4 @@ class ModelService {
   }
 }
 
-export default ModelService;
+module.exports = ModelService;

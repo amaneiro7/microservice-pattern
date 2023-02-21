@@ -1,7 +1,7 @@
-import { express } from "express";
-import ModelService from "../services/model.service";
-import { validatorHandler } from "../middlewares/validator.handler";
-import { createModelSchema, getModelSchema, updateModelSchema } from "../schemas/model.schema";
+const express = require('express');
+const ModelService = require("../services/model.service.js");
+const validatorHandler = require("../middlewares/validator.handler.js");
+const { createModelSchema, getModelSchema, updateModelSchema } = require("../schemas/model.schema.js");
 
 const router = express.Router();
 const service = new ModelService();
@@ -69,4 +69,4 @@ router.delete('/:id',
     }
   });
 
-  export default router;
+module.exports = router;

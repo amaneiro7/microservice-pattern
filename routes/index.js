@@ -1,7 +1,7 @@
-import { express } from "express";
-import categoriesRouter from "./categories.router";
-import branchRouter from "./branch.router";
-import modelsRouter from "./model.router";
+const express = require('express');
+const  categoriesRouter = require('./categories.router');
+const branchRouter = require("./branch.router.js");
+const modelsRouter = require("./model.router.js");
 
 
 function routerApi(app) {
@@ -12,4 +12,4 @@ function routerApi(app) {
   router.use('/models', modelsRouter);
 };
 
-export default routerApi;
+module.exports = routerApi;

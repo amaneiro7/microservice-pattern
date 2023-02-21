@@ -1,4 +1,4 @@
-import { Joi } from "joi";
+const Joi = require('joi');
 
 const id = Joi.number().integer();
 const processor = Joi.string();
@@ -34,4 +34,4 @@ const getSpecsSchema = Joi.object({
   id: id.required(),
 })
 
-export { createSpecsSchema, updateSpecsSchema, getSpecsSchema };
+module.exports = { createSpecsSchema, updateSpecsSchema, getSpecsSchema };

@@ -1,7 +1,7 @@
-import { express } from "express";
-import BranchService from "../services/branch.service";
-import { validatorHandler } from "../middlewares/validator.handler";
-import { createBranchSchema, getBranchSchema, updateBranchSchema } from "../schemas/branch.schema";
+const express = require('express');
+const BranchService = require("../services/branch.service.js");
+const validatorHandler = require("../middlewares/validator.handler.js");
+const { createBranchSchema, getBranchSchema, updateBranchSchema } = require("../schemas/branch.schema.js");
 
 const router = express.Router();
 const service = new BranchService();
@@ -69,4 +69,4 @@ router.delete('/:id',
     }
   });
 
-  export default router;
+  module.exports = router;

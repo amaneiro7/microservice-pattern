@@ -1,4 +1,4 @@
-import { Joi } from "joi";
+const Joi = require('joi');
 
 const id = Joi.number().integer();
 const name = Joi.string();
@@ -15,4 +15,4 @@ const getBranchSchema = Joi.object({
   id: id.required(),
 })
 
-export { createBranchSchema, updateBranchSchema, getBranchSchema };
+module.exports =  { createBranchSchema, updateBranchSchema, getBranchSchema };

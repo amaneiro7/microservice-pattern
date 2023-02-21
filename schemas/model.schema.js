@@ -1,4 +1,4 @@
-import { Joi } from "joi";
+const Joi = require('joi');
 
 const id = Joi.number().integer();
 const name = Joi.string();
@@ -15,4 +15,4 @@ const getModelSchema = Joi.object({
   id: id.required(),
 })
 
-export { createModelSchema, updateModelSchema, getModelSchema };
+module.exports =  { createModelSchema, updateModelSchema, getModelSchema };

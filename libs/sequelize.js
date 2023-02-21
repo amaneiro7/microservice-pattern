@@ -1,6 +1,6 @@
-import { Sequelize } from "sequelize";
-import { SetupModels } from "../db/models";
-import { config } from "../config/config";
+const { Sequelize } = require('sequelize');
+const { config } = require('../config/config');
+const SetupModels = require('../db/models');
 
 const {
   dbUser,
@@ -15,11 +15,11 @@ const PASSWORD = encodeURIComponent(dbPassword);
 const URI = `postgres://${USER}:${PASSWORD}@${dbHost}:${dbPort}/${dbName}`;
 
 
-export const sequelize = new Sequelize(URI,  {
+const sequelize = new Sequelize(URI,  {
   dialect: 'postgres',
   logging: true,
 });
 
 SetupModels(sequelize);
 
-// module.exports = sequelize;
+module.exports = sequelize;
