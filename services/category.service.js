@@ -19,9 +19,7 @@ class CategoryService {
   }
 
   async findOne(id) {
-    const category = await models.Category.findByPk(id, {
-      include: ['item','branch', 'model', 'specs']
-    });
+    const category = await models.Category.findByPk(id);
     if (!category) {
       throw boom.notFound('categoria no existe')
     }
@@ -30,14 +28,14 @@ class CategoryService {
 
   //PATCH
   async update(id, changes) {
-    const category = await models.Category.findOne(id);
+    const category = await this.findOne(id);
     const res = await category.models.update(changes);
     return res
   }
 
   //DELETE
   async delete(id) {
-    const category = await models.Category.findOne(id);
+    const category = await this.findOne(id);
     await category.destroy();
     return { id };
   }

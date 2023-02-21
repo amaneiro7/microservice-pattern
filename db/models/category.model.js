@@ -30,7 +30,7 @@ const CategorySchema = {
       key: 'id'
     },
     onUpdate: 'CASCADE',
-    onDelete: 'SET_NULL'
+    onDelete: 'SET NULL'
   }
 };
 class Category extends Model {

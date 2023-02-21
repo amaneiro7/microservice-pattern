@@ -1,23 +1,20 @@
-const { User, UserSchema } = require('./user.model');
-const { Customer, CustomerSchema } = require('./customer.model');
+
+const { Branch, BranchSchema } = require('./branch.mode');
 const { Category, CategorySchema } = require('./category.model');
-const { Product, ProductSchema } = require('./product.model');
-const { Order, OrderSchema } = require('./order.model');
-const { OrderProduct, OrderProductSchema } = require('./order-product.model');
+const { Item, ItemSchema } = require('./item.model');
+const { Models, ModelSchema } = require('./model.model');
+
 
 function SetupModels(sequelize) {
-  User.init(UserSchema, User.config(sequelize));
-  Customer.init(CustomerSchema, Customer.config(sequelize));
-  Product.init(ProductSchema, Product.config(sequelize));
+  Item.init(ItemSchema, Item.config(sequelize));
   Category.init(CategorySchema, Category.config(sequelize));
-  Order.init(OrderSchema, Order.config(sequelize));
-  OrderProduct.init(OrderProductSchema, OrderProduct.config(sequelize));
+  Branch.init(BranchSchema, Branch.config(sequelize));
+  Models.init(ModelSchema, Models.config(sequelize));
 
-  User.associate(sequelize.models);
-  Customer.associate(sequelize.models);
+  Item.associate(sequelize.models);
   Category.associate(sequelize.models);
-  Product.associate(sequelize.models);
-  Order.associate(sequelize.models);
+  Branch.associate(sequelize.models);
+  Models.associate(sequelize.models);
 };
 
 module.exports = SetupModels;

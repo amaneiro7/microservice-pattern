@@ -30,7 +30,7 @@ const ModelSchema = {
       key: 'id'
     },
     onUpdate: 'CASCADE',
-    onDelete: 'SET_NULL'
+    onDelete: 'SET NULL'
   }
 };
 

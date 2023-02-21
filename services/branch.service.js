@@ -19,9 +19,7 @@ class BranchService {
   }
 
   async findOne(id) {
-    const branch = await models.Branch.findByPk(id, {
-      include: ['item','category', 'model', 'specs']
-    });
+    const branch = await models.Branch.findByPk(id);
     if (!branch) {
       throw boom.notFound('no existe esa Marca')
     }
@@ -29,13 +27,13 @@ class BranchService {
   }
   //PATCH
   async update(id, changes) {
-    const branch = await models.Branch.findOne(id);
+    const branch = await this.findOne(id);
     const res = await branch.models.update(changes);
     return res
   }
   //DELETE
   async delete(id) {
-    const branch = await models.Branch.findOne(id);
+    const branch = await this.findOne(id);
     await branch.destroy();
     return { id };
   }
