@@ -1,6 +1,7 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
+const { CATEGORY_TABLE } = require('./category.model');
 
-const ITEM_TABLE = 'item';
+const ITEM_TABLE = 'items';
 
 const ItemSchema = {
   id: {
@@ -25,14 +26,22 @@ const ItemSchema = {
     field: 'created_at',
     defaultValue: Sequelize.NOW
   },
+  categoryId: {
+    field: 'categroy_id',
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    references: {
+      model: CATEGORY_TABLE,
+      key: 'id'
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET_NULL'
+  }
 };
 
 class Item extends Model {
   static associate(models) {
-    this.hasOne(models.Category, {
-      as: 'category',
-      foreignKey: 'categoryId'
-    })
+    this.belongsTo(models.Category, { as: 'category' })
   }
 
   static config(sequelize) {

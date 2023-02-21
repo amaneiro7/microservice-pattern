@@ -19,15 +19,20 @@ const BranchSchema = {
     type: DataTypes.DATE,
     field: 'created_at',
     defaultValue: Sequelize.NOW
-  }
+  },
 };
 
 class Branch extends Model {
   static associate(models) {
-    this.hasOne(models.Model, {
+    this.hasMany(models.Category, {
       as: 'category',
       foreignKey: 'categoryId'
+    }),
+    this.hasMany(models.Model, {
+      as: 'model',
+      foreignKey: 'modelId'
     })
+
   }
 
   static config(sequelize) {
