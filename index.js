@@ -3,8 +3,6 @@ const routerApi = require('./routes');
 const { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('./middlewares/error.handler');
 // const cors = require('cors');
 
-logErrors
-
 const app = express();
 const port = 3001;
 
@@ -29,7 +27,4 @@ app.use(ormErrorHandler);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 
-
 app.listen(port);
-
-// how to create a function to fetch a api?

@@ -14,16 +14,12 @@ class CategoryService {
   };
 //GET
   async find() {
-    const categories = await models.Category.findAll({
-      include: ['item', 'branch', 'models']
-    });
+    const categories = await models.Category.findAll();
     return categories;
   }
 
-  async findOne(id) {
-    const category = await models.Category.findByPk(id,{
-      include: ['item', 'branch', 'models']
-    });
+  async findOne(name) {
+    const category = await models.Category.findOne({where: { name }});
     if (!category) {
       throw boom.notFound('categoria no existe')
     }
