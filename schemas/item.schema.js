@@ -1,24 +1,29 @@
 const Joi = require('joi');
 
 const id = Joi.number().integer();
-const serial = Joi.string();
-const activo = Joi.string();
+const serial = Joi.string().allow(null).allow('').optional();
+const activo = Joi.string().allow(null).allow('').optional();
+const status = Joi.boolean();
 const categoryId = Joi.number().integer();
-const branchId = Joi.number().integer();
-
+const brandId = Joi.number().integer();
+const modelId = Joi.number().integer();
 
 const createItemSchema = Joi.object({
   serial: serial,
   activo: activo,
+  status: status.required(),
   categoryId: categoryId.required(),
-  branchId: branchId.required()
+  brandId: brandId.required(),
+  modelId: modelId.required()
 });
 
 const updateItemSchema = Joi.object({
   serial,
   activo,
+  status,
   categoryId,
-  branchId
+  brandId,
+  modelId
 });
 
 const getItemSchema = Joi.object({

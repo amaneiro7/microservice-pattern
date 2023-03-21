@@ -1,6 +1,7 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 const { CATEGORY_TABLE } = require('./category.model');
-const { BRANCH_TABLE } = require('./branch.model');
+const { BRAND_TABLE } = require('./brand.model');
+const { MODEL_TABLE } = require('./model.model');
 
 const ITEM_TABLE = 'item';
 
@@ -21,6 +22,14 @@ const ItemSchema = {
     type: DataTypes.STRING,
     unique: true,
   },
+  status: {
+    allowNull: false,
+    type: DataTypes.BOOLEAN,
+  },
+  obsolete: {
+    allowNull: false,
+    type: DataTypes.BOOLEAN,
+  },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,
@@ -38,12 +47,23 @@ const ItemSchema = {
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL'
   },
-  branchId: {
-    field: 'branch_id',
+  brandId: {
+    field: 'brand_id',
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {
-      model: BRANCH_TABLE,
+      model: BRAND_TABLE,
+      key: 'id'
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
+  },
+  modelId: {
+    field: 'model_id',
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    references: {
+      model: MODEL_TABLE,
       key: 'id'
     },
     onUpdate: 'CASCADE',
@@ -53,8 +73,9 @@ const ItemSchema = {
 
 class Item extends Model {
   static associate(models) {
-    this.belongsTo(models.Category, { as: 'category' })
-    this.belongsTo(models.Branch, { as: 'branch' })
+    this.belongsTo(models.Category, { as: 'category' }),
+    this.belongsTo(models.Brand, { as: 'brand' }),
+    this.belongsTo(models.Models, { as: 'model' })
   }
 
   static config(sequelize) {
