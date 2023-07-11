@@ -1,7 +1,7 @@
 import boom from '@hapi/boom'
 import store from '../../libs/sequelize.js'
 
-export default class UserServive {
+export default class CategoryServive {
   // POST
   async create (payload) {
     const { email } = payload.toLowerCase()

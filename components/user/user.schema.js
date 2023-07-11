@@ -4,11 +4,10 @@ const id = Joi.number().integer()
 const name = Joi.string().min(3).max(15)
 const lastname = Joi.string().min(3).max(15)
 const email = Joi.string().email()
-const role = Joi.string().valid('Admin', 'Editor', '', 'guest')
+const role = Joi.string().valid('Admin', 'Editor', 'Auditor', 'Guest')
 const password = Joi.string().pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{5,20}$/)
 
-export const CreateUserDTO = Joi.object({
-  id: id.required(),
+export const CreateDTO = Joi.object({
   name: name.required(),
   lastname: lastname.required(),
   email: email.required(),
@@ -16,7 +15,7 @@ export const CreateUserDTO = Joi.object({
   password: password.required()
 })
 
-export const UpdateUserDTO = Joi.object({
+export const UpdateDTO = Joi.object({
   name,
   lastname,
   email,
@@ -24,6 +23,6 @@ export const UpdateUserDTO = Joi.object({
   role
 })
 
-export const GetUserDTO = Joi.object({
+export const GetDTO = Joi.object({
   id: id.required()
 })

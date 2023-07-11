@@ -1,9 +1,9 @@
 import { Model } from 'sequelize'
 
-export const TABLE = 'user'
-const modelName = 'User'
+export const TABLE = 'category'
+const modelName = 'Category'
 
-export class User extends Model {
+export class Category extends Model {
   static associate () {}
 
   static config (sequelize) {
