@@ -1,10 +1,21 @@
 import boom from '@hapi/boom'
-import { models } from '../../libs/sequelize.js'
+import models from '../../libs/sequelize.js'
 
 export default class UserServive {
   // POST
-  async create (data) {
-    return await models.User.create(data)
+  async create (payload) {
+    const { email } = payload.toLowerCase()
+    const [data, created] = await models.User.findOrCreate({
+      where: { email },
+      defaults: {
+        ...payload
+      }
+    })
+    if (!created) {
+      throw boom.conflict('Email ya se encuentra registrado')
+    }
+
+    return data
   }
 
   // GetAll
@@ -13,10 +24,20 @@ export default class UserServive {
   }
 
   // Get One
-  async getOne (id) {
+  async getById (id) {
     const data = await models.User.findbyPk(id)
     if (!data) {
       throw boom.notFound('Usuario no existe')
+    }
+    return data
+  }
+
+  async getByName (email) {
+    const data = await models.User.findOne({
+      where: { email }
+    })
+    if (!data) {
+      throw boom.notFound('Email no Existe')
     }
     return data
   }

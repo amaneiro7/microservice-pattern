@@ -1,13 +1,14 @@
 import { Sequelize } from 'sequelize'
-import { config } from '../config/config'
-import SetupModels from '../db/models'
+import { config } from '../config/config.js'
+import SetupModels from '../db/models/index.js'
 
-const URI = config.postgresDB.uri
+const URI = config.uri
+const dialect = config.dialect
 
 const sequelize = new Sequelize(URI, {
-  dialect: 'postgres',
-  logging: true
-}, () => console.log('DB connected'))
+  dialect,
+  logging: console.log('Connection has been establisehd succesfully')
+})
 
 SetupModels(sequelize)
 

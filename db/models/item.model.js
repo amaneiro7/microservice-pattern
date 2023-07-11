@@ -1,7 +1,7 @@
 import { Model, DataTypes, Sequelize } from 'sequelize'
-import { CATEGORY_TABLE } from './category.model'
-import { BRAND_TABLE } from './brand.model'
-import { MODEL_TABLE } from './model.model'
+import { CATEGORY_TABLE } from './category.model.js'
+import { BRAND_TABLE } from './brand.model.js'
+import { MODEL_TABLE } from './model.model.js'
 
 export const ITEM_TABLE = 'item'
 
@@ -86,6 +86,4 @@ export class Item extends Model {
       timestamps: false
     }
   }
-};
-
-module.exports = { ItemSchema, ITEM_TABLE, Item }
+}

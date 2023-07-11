@@ -1,6 +1,6 @@
 import { Model, DataTypes, Sequelize } from 'sequelize'
-import { BRAND_TABLE } from './brand.model'
-import { CATEGORY_TABLE } from './category.model'
+import { BRAND_TABLE } from './brand.model.js'
+import { CATEGORY_TABLE } from './category.model.js'
 
 export const MODEL_TABLE = 'model'
 

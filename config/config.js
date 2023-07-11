@@ -1,4 +1,4 @@
-const postgresDB = {
+const DB = {
   dbUser: process.env.USER || 'appadmin',
   dbPassword: process.env.PASS || 'Man12345.',
   dbHost: process.env.HOST || 'localhost',
@@ -7,9 +7,8 @@ const postgresDB = {
 }
 
 export const config = {
-  postgresDB: {
-    uri: process.env.URI || `postgres//${postgresDB.dbUser}:${postgresDB.dbPassword}@${postgresDB.dbHost}:${postgresDB.dbPort}/${postgresDB.dbName}`
-  },
+  uri: process.env.URI || `postgres://${DB.dbUser}:${DB.dbPassword}@${DB.dbHost}:${DB.dbPort}/${DB.dbName}`,
+  dialect: process.env.DIALECT || 'postgres',
   port: process.env.PORT || 3000,
   host: process.env.HOST || 'http://localhost'
 }

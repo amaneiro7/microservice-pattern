@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
+    "@types/joi": "^17.2.3",
     "eslint": "^8.32.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
@@ -38,6 +39,8 @@
     "standard": "^17.1.0"
   },
   "eslintConfig": {
-    "extends": ["/node_modules/standard/eslintrc.json"]
+    "extends": [
+      "/node_modules/standard/eslintrc.json"
+    ]
   }
 }

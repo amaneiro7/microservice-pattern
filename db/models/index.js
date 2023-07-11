@@ -2,7 +2,8 @@ import { Category, CategorySchema } from './category.model.js'
 import { Item, ItemSchema } from './item.model.js'
 import { Brand, BrandSchema } from './brand.model.js'
 import { Models, ModelSchema } from './model.model.js'
-import { User, UserSchema } from './user.model.js'
+import { User } from '../../components/user/user.store.js'
+import { UserSchema } from '../../components/user/user.model.js'
 
 export default function SetupModels (sequelize) {
   Category.init(CategorySchema, Category.config(sequelize))
