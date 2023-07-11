@@ -1,13 +1,15 @@
-require('dotenv').config();
-
-const config = {
-  env: process.env.NODE_ENV || 'dev',
-  port: process.env.PORT || 3001,
-  dbUser: process.env.DB_USER,
-  dbPassword: process.env.DB_PASSWORD,
-  dbHost: process.env.DB_HOST,
-  dbName: process.env.DB_NAME,
-  dbPort: process.env.DB_PORT,
+const postgresDB = {
+  dbUser: process.env.USER || 'appadmin',
+  dbPassword: process.env.PASS || 'Man12345.',
+  dbHost: process.env.HOST || 'localhost',
+  dbName: process.env.NAME || 'my_inventory',
+  dbPort: process.env.PORT || 5432
 }
 
-module.exports = { config };
+export const config = {
+  postgresDB: {
+    uri: process.env.URI || `postgres//${postgresDB.dbUser}:${postgresDB.dbPassword}@${postgresDB.dbHost}:${postgresDB.dbPort}/${postgresDB.dbName}`
+  },
+  port: process.env.PORT || 3000,
+  host: process.env.HOST || 'http://localhost'
+}

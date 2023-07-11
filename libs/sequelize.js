@@ -1,25 +1,14 @@
-const { Sequelize } = require('sequelize');
-const { config } = require('../config/config');
-const SetupModels = require('../db/models');
+import { Sequelize } from 'sequelize'
+import { config } from '../config/config'
+import SetupModels from '../db/models'
 
-const {
-  dbUser,
-  dbPassword,
-  dbHost,
-  dbPort,
-  dbName,
-} = config
+const URI = config.postgresDB.uri
 
-const USER = encodeURIComponent(dbUser);
-const PASSWORD = encodeURIComponent(dbPassword);
-const URI = `postgres://${USER}:${PASSWORD}@${dbHost}:${dbPort}/${dbName}`;
-
-
-const sequelize = new Sequelize(URI,  {
+const sequelize = new Sequelize(URI, {
   dialect: 'postgres',
-  logging: true,
-});
+  logging: true
+}, () => console.log('DB connected'))
 
-SetupModels(sequelize);
+SetupModels(sequelize)
 
-module.exports = sequelize;
+export default sequelize

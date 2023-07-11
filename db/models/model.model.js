@@ -1,10 +1,10 @@
-const { Model, DataTypes, Sequelize } = require('sequelize');
-const { BRAND_TABLE } = require('./brand.model');
-const { CATEGORY_TABLE } = require('./category.model');
+import { Model, DataTypes, Sequelize } from 'sequelize'
+import { BRAND_TABLE } from './brand.model'
+import { CATEGORY_TABLE } from './category.model'
 
-const MODEL_TABLE = 'model';
+export const MODEL_TABLE = 'model'
 
-const ModelSchema = {
+export const ModelSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -14,7 +14,7 @@ const ModelSchema = {
   name: {
     allowNull: true,
     type: DataTypes.STRING,
-    unique: true,
+    unique: true
   },
   createdAt: {
     allowNull: false,
@@ -44,26 +44,24 @@ const ModelSchema = {
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL'
   }
-};
+}
 
-class Models extends Model {
-  static associate(models) {
+export class Models extends Model {
+  static associate (models) {
     this.belongsTo(models.Category, { as: 'category' }),
     this.belongsTo(models.Brand, { as: 'brand' }),
     this.hasMany(models.Item, {
       as: 'item',
-      foreignKey: 'modelId',
-  })
-}
+      foreignKey: 'modelId'
+    })
+  }
 
-  static config(sequelize) {
+  static config (sequelize) {
     return {
       sequelize,
       tableName: MODEL_TABLE,
       modelName: 'Models',
-      timestamps: false,
+      timestamps: false
     }
   }
-};
-
-module.exports = { ModelSchema, MODEL_TABLE, Models}
+}

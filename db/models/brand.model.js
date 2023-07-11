@@ -1,8 +1,8 @@
-const { Model, DataTypes, Sequelize } = require('sequelize');
+import { Model, DataTypes, Sequelize } from 'sequelize'
 
-const BRAND_TABLE = 'brand';
+export const BRAND_TABLE = 'brand'
 
-const BrandSchema = {
+export const BrandSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -12,18 +12,18 @@ const BrandSchema = {
   name: {
     allowNull: false,
     type: DataTypes.STRING,
-    unique: true,
+    unique: true
   },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,
     field: 'created_at',
     defaultValue: Sequelize.NOW
-  },
-};
+  }
+}
 
-class Brand extends Model {
-  static associate(models) {
+export class Brand extends Model {
+  static associate (models) {
     this.hasMany(models.Item, {
       as: 'item',
       foreignKey: 'brandId'
@@ -34,14 +34,12 @@ class Brand extends Model {
     })
   }
 
-  static config(sequelize) {
+  static config (sequelize) {
     return {
       sequelize,
       tableName: BRAND_TABLE,
       modelName: 'Brand',
-      timestamps: false,
+      timestamps: false
     }
   }
-};
-
-module.exports = { BrandSchema, BRAND_TABLE, Brand}
+}

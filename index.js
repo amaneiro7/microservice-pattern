@@ -1,31 +1,6 @@
-const express = require('express');
-const routerApi = require('./routes');
-const { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('./middlewares/error.handler');
-const cors = require('cors');
+import express from 'express'
+import { config } from './config/config.js'
 
-const app = express();
-const port = 3001;
-const whitelist = ["http://localhost:8080", "https://myapp.co","http://localhost:3000"];
-const options = {
-  origin: (origin, callback) => {
-    if (whitelist.includes(origin) || !origin) {
-      callback(null, true)
-    } else {
-      callback(new Error('no permitido'))
-    };
-  }
-};
+const app = express()
 
-app.use(cors(options));
-app.use(express.json());
-
-
-routerApi(app);
-app.listen(port);
-
-app.use(logErrors);
-app.use(ormErrorHandler);
-app.use(boomErrorHandler);
-app.use(errorHandler);
-
-
+app.listen(config.port, () => console.log(`servidor iniciado en el puerto ${config.port}`))

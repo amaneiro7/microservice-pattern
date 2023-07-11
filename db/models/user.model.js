@@ -1,8 +1,8 @@
 import { Model, DataTypes, Sequelize } from 'sequelize'
 
-export const CATEGORY_TABLE = 'category'
+export const USER_TABLE = 'user'
 
-export const CategorySchema = {
+export const UserSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -11,8 +11,20 @@ export const CategorySchema = {
   },
   name: {
     allowNull: false,
+    type: DataTypes.STRING
+  },
+  lastname: {
+    allowNull: false,
+    type: DataTypes.STRING
+  },
+  email: {
+    allowNull: false,
     type: DataTypes.STRING,
     unique: true
+  },
+  password: {
+    allowNull: false,
+    type: DataTypes.STRING
   },
   createdAt: {
     allowNull: false,
@@ -21,7 +33,7 @@ export const CategorySchema = {
     defaultValue: Sequelize.NOW
   }
 }
-export class Category extends Model {
+export class User extends Model {
   static associate (models) {
     this.hasMany(models.Item, {
       as: 'item',
@@ -36,8 +48,8 @@ export class Category extends Model {
   static config (sequelize) {
     return {
       sequelize,
-      tableName: CATEGORY_TABLE,
-      modelName: 'Category',
+      tableName: USER_TABLE,
+      modelName: 'User',
       timestamps: false
     }
   }
