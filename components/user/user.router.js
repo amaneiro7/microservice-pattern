@@ -1,17 +1,17 @@
 import { Router } from 'express'
 import validatorHandler from '../../middlewares/validator.handler.js'
 import Service from './user.service.js'
-import { CreateUserDTO, GetUserDTO, UpdateUserDTO } from './user.schema.js'
+import { CreateDTO, GetDTO, UpdateDTO } from './user.schema.js'
 
 const router = Router()
 const service = new Service()
 
 // Routes
-router.post('/', validatorHandler(CreateUserDTO, 'body'), create)
+router.post('/', validatorHandler(CreateDTO, 'body'), create)
 router.get('/', getAll)
-router.get('/:id', validatorHandler(GetUserDTO, 'parmas'), getOne)
-router.put('/', validatorHandler(GetUserDTO, 'params'), validatorHandler(UpdateUserDTO, 'body'), update)
-router.delete('/', validatorHandler(GetUserDTO, 'params'), deleteData)
+router.get('/:id', validatorHandler(GetDTO, 'parmas'), getOne)
+router.put('/', validatorHandler(GetDTO, 'params'), validatorHandler(UpdateDTO, 'body'), update)
+router.delete('/', validatorHandler(GetDTO, 'params'), deleteData)
 
 function create (req, res, next) {
   service.create(req.body)

@@ -1,11 +1,13 @@
 import boom from '@hapi/boom'
-import store from '../../libs/sequelize.js'
+import sequelize from '../../libs/sequelize.js'
 
-export default class CategoryServive {
+const store = sequelize.models
+
+export default class CategoryService {
   // POST
   async create (payload) {
     const { email } = payload.toLowerCase()
-    const [data, created] = await store.User.findOrCreate({
+    const [data, created] = await store.Category.findOrCreate({
       where: { email },
       defaults: {
         ...payload
@@ -20,20 +22,22 @@ export default class CategoryServive {
 
   // GetAll
   async getAll () {
-    return await store.User.findAll()
+    console.log(store.models)
+    return await store.Category.findAll()
   }
 
-  // Get One
+  // Get One By Id
   async getById (id) {
-    const data = await store.User.findbyPk(id)
+    const data = await store.Category.findbyPk(id)
     if (!data) {
       throw boom.notFound('Usuario no existe')
     }
     return data
   }
 
+  // Get One By Name
   async getByName (email) {
-    const data = await store.User.findOne({
+    const data = await store.Category.findOne({
       where: { email }
     })
     if (!data) {

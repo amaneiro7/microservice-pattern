@@ -1,7 +1,7 @@
 const DB = {
   dbUser: process.env.USER || 'appadmin',
   dbPassword: process.env.PASS || 'Man12345.',
-  dbHost: process.env.HOST || 'localhost',
+  dbHost: process.env.HOST || '10.0.12.106',
   dbName: process.env.NAME || 'my_inventory',
   dbPort: process.env.PORT || 5432
 }
