@@ -7,7 +7,7 @@ const dialect = config.dialect
 
 const sequelize = new Sequelize(URI, {
   dialect,
-  logging: console.log('Connection has been establisehd succesfully')
+  logging: console.log('Connection has been establisehd succesfully', URI)
 })
 
 SetupModels(sequelize)
