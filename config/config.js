@@ -1,9 +1,9 @@
 const DB = {
-  dbUser: process.env.USER || 'appadmin',
-  dbPassword: process.env.PASS || 'Man12345.',
-  dbHost: process.env.HOST || 'localhost',
-  dbName: process.env.NAME || 'my_inventory',
-  dbPort: process.env.PORT || 5432
+  dbUser: process.env.DB_USER || 'appadmin',
+  dbPassword: process.env.DB_PASSWORD || 'Man12345.',
+  dbHost: process.env.DB_HOST || 'localhost',
+  dbName: process.env.DB_NAME || 'my_inventory',
+  dbPort: process.env.DB_PORT || 5432
 }
 
 export const config = {
