@@ -1,3 +1,4 @@
+import 'dotenv/config'
 const DB = {
   dbUser: process.env.DB_USER || 'appadmin',
   dbPassword: process.env.DB_PASSWORD || 'Man12345.',
