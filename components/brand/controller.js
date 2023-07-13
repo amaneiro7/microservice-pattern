@@ -22,7 +22,6 @@ export default class CategoryService {
 
   // GetAll
   async getAll () {
-    console.log(store.models)
     return await store.Category.findAll()
   }
 

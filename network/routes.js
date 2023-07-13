@@ -1,5 +1,5 @@
-import user from '../components/user/user.router.js'
-import category from '../components/category/category.router.js'
+import user from '../components/user/router.js'
+import category from '../components/category/router.js'
 
 const routes = (server) => {
   server.use('/user', user)

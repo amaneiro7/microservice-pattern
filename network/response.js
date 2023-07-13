@@ -14,6 +14,6 @@ function basedResponse (req, res, data, message = '', status = 200) {
     err: false,
     status,
     message,
-    body: data
+    data
   })
 }
