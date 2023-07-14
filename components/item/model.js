@@ -1,51 +1,70 @@
 import { DataTypes, Sequelize } from 'sequelize'
+import { TABLE as BRAND_TABLE } from '../brand/store.js'
+import { TABLE as BRAND_MODEL_TABLE } from '../brandModel/store.js'
+import { TABLE as CATEGORY_TABLE } from '../category/store.js'
 
-export const UserSchema = {
+export const ItemSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
     type: DataTypes.INTEGER
   },
-  name: {
-    allowNull: false,
+  serial: {
+    allowNull: true,
     type: DataTypes.STRING,
-    notNull: {
-      msg: 'Por favor ingrese su nombre'
-    }
+    unique: true
   },
-  lastname: {
-    allowNull: false,
+  activo: {
+    allowNull: true,
     type: DataTypes.STRING,
-    notNull: {
-      msg: 'Por favor ingrese su apellido'
-    }
+    unique: true
   },
-  email: {
+  status: {
     allowNull: false,
-    type: DataTypes.STRING,
-    unique: true,
-    validate: {
-      isEmail: true,
-      isLowerCase: true,
-      notNull: {
-        msg: 'Por favor ingrese su email'
-      }
-    }
+    type: DataTypes.BOOLEAN
   },
-  password: {
+  obsolete: {
     allowNull: false,
-    type: DataTypes.STRING,
-    validate: {
-      notNull: {
-        msg: 'Por favor ingrese su contraseña'
-      }
-    }
+    type: DataTypes.BOOLEAN
   },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,
     field: 'created_at',
     defaultValue: Sequelize.NOW
+  },
+  categoryId: {
+    field: 'categroy_id',
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    references: {
+      model: CATEGORY_TABLE,
+      key: 'id'
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
+  },
+  brandId: {
+    field: 'brand_id',
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    references: {
+      model: BRAND_TABLE,
+      key: 'id'
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
+  },
+  modelId: {
+    field: 'model_id',
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    references: {
+      model: BRAND_MODEL_TABLE,
+      key: 'id'
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
   }
 }

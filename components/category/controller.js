@@ -6,15 +6,15 @@ const store = sequelize.models
 export default class CategoryService {
   // POST
   async create (payload) {
-    const { email } = payload.toLowerCase()
+    const { name } = payload.toLowerCase()
     const [data, created] = await store.Category.findOrCreate({
-      where: { email },
+      where: { name },
       defaults: {
         ...payload
       }
     })
     if (!created) {
-      throw boom.conflict('Email ya se encuentra registrado')
+      throw boom.conflict('Categoria ya existe en la BD')
     }
 
     return data
@@ -27,17 +27,17 @@ export default class CategoryService {
 
   // Get One By Id
   async getById (id) {
-    const data = await store.Category.findbyPk(id)
+    const data = await store.Category.findByPk(id)
     if (!data) {
-      throw boom.notFound('Usuario no existe')
+      throw boom.notFound('Categoria ya existe en la BD')
     }
     return data
   }
 
   // Get One By Name
-  async getByName (email) {
+  async getByName (name) {
     const data = await store.Category.findOne({
-      where: { email }
+      where: { name }
     })
     if (!data) {
       throw boom.notFound('Email no Existe')
@@ -47,13 +47,13 @@ export default class CategoryService {
 
   // PATCH
   async update (id, changes) {
-    const data = await this.findOne(id)
+    const data = await this.getById(id)
     return await data.update(changes)
   }
 
   // DELETE
   async delete (id) {
-    const data = await this.findOne(id)
+    const data = await this.getById(id)
     await data.destroy()
     return { id }
   }

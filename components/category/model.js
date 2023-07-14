@@ -1,6 +1,6 @@
 import { DataTypes, Sequelize } from 'sequelize'
 
-export const UserSchema = {
+export const CategorySchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -11,35 +11,7 @@ export const UserSchema = {
     allowNull: false,
     type: DataTypes.STRING,
     notNull: {
-      msg: 'Por favor ingrese su nombre'
-    }
-  },
-  lastname: {
-    allowNull: false,
-    type: DataTypes.STRING,
-    notNull: {
-      msg: 'Por favor ingrese su apellido'
-    }
-  },
-  email: {
-    allowNull: false,
-    type: DataTypes.STRING,
-    unique: true,
-    validate: {
-      isEmail: true,
-      isLowerCase: true,
-      notNull: {
-        msg: 'Por favor ingrese su email'
-      }
-    }
-  },
-  password: {
-    allowNull: false,
-    type: DataTypes.STRING,
-    validate: {
-      notNull: {
-        msg: 'Por favor ingrese su contraseña'
-      }
+      msg: 'Por favor ingrese el nombre de la categoria'
     }
   },
   createdAt: {

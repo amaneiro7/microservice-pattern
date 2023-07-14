@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import validatorHandler from '../../middlewares/validator.handler.js'
 import Controller from './controller.js'
-import { CreateDTO, GetDTO, UpdateDTO } from './schema.js'
+import { CreateDTO, GetDTO, UpdateDTO } from './dto.js'
 import response from '../../network/response.js'
 
 const router = Router()
