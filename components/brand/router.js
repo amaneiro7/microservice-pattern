@@ -12,7 +12,7 @@ router.post('/', validatorHandler(CreateDTO, 'body'), create)
 router.get('/', get)
 router.get('/:id', validatorHandler(GetDTO, 'parmas'), getById)
 router.get('/:name', validatorHandler(GetDTO, 'parmas'), getByName)
-router.put('/:id', validatorHandler(GetDTO, 'params'), validatorHandler(UpdateDTO, 'body'), update)
+router.patch('/:id', validatorHandler(GetDTO, 'params'), validatorHandler(UpdateDTO, 'body'), update)
 router.delete('/', validatorHandler(GetDTO, 'params'), deleteData)
 
 function create (req, res, next) {

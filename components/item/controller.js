@@ -6,9 +6,18 @@ const store = sequelize.models
 export default class ItemService {
   // POST
   async create (payload) {
-    const { email } = payload.toLowerCase()
+    const { serial, activo } = payload.toLowerCase()
     const [data, created] = await store.Item.findOrCreate({
-      where: { email },
+      where: {
+        [Op.or]: [
+          { serial: { [Op.eq]: null } },
+          { serial: { [Op.eq]: '' } }
+        ],
+        [Op.or]: [
+          { activo: { [Op.eq]: null } },
+          { activo: { [Op.eq]: '' } }
+        ]
+      },
       defaults: {
         ...payload
       }
@@ -29,31 +38,41 @@ export default class ItemService {
   async getById (id) {
     const data = await store.Item.findByPk(id)
     if (!data) {
-      throw boom.notFound('Usuario no existe')
+      throw boom.notFound('Item no existe')
     }
     return data
   }
 
   // Get One By Name
-  async getByName (email) {
+  async getBySerial (serial) {
     const data = await store.Item.findOne({
-      where: { email }
+      where: { serial }
     })
     if (!data) {
-      throw boom.notFound('Email no Existe')
+      throw boom.notFound('Serial no Existe')
+    }
+    return data
+  }
+
+  async getByActivo (activo) {
+    const data = await store.Item.findOne({
+      where: { activo }
+    })
+    if (!data) {
+      throw boom.notFound('Activo no Existe')
     }
     return data
   }
 
   // PATCH
   async update (id, changes) {
-    const data = await this.findOne(id)
+    const data = await this.getById(id)
     return await data.update(changes)
   }
 
   // DELETE
   async delete (id) {
-    const data = await this.findOne(id)
+    const data = await this.getById(id)
     await data.destroy()
     return { id }
   }

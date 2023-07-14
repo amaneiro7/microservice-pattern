@@ -10,7 +10,7 @@ const controller = new Controller()
 router.post('/', validatorHandler(CreateDTO, 'body'), create)
 router.get('/', getAll)
 router.get('/:id', validatorHandler(GetDTO, 'parmas'), getOne)
-router.put('/', validatorHandler(GetDTO, 'params'), validatorHandler(UpdateDTO, 'body'), update)
+router.patch('/', validatorHandler(GetDTO, 'params'), validatorHandler(UpdateDTO, 'body'), update)
 router.delete('/', validatorHandler(GetDTO, 'params'), deleteData)
 
 function create (req, res, next) {
