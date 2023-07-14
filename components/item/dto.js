@@ -10,14 +10,14 @@ const brandId = Joi.number().integer()
 const modelId = Joi.number().integer()
 
 export const CreateDTO = Joi.object({
-  serial: serial.or(activo).required(),
-  activo: activo.or(serial).required(),
+  serial,
+  activo,
   status: status.default(true),
   obsolete: status.default(true),
   categoryId: categoryId.required(),
   brandId: brandId.required(),
   modelId: modelId.required()
-})
+}).or('serial', 'activo')
 
 export const UpdateDTO = Joi.object({
   serial,
