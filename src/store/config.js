@@ -1,14 +1,17 @@
-import { config } from '../config/config'
-
-const URI = config.postgresDB.uri
+import { config } from '../config/config.js'
 
 export default {
   development: {
-    url: URI,
-    dialect: 'postgres'
+    url: config.dbUrl,
+    dialect: config.dialect
   },
   production: {
-    url: URI,
-    dialect: 'postgres'
+    url: config.dbUrl,
+    dialect: config.dialect,
+    dialectOptions: {
+      ssl: {
+        rejectUnauthorized: false
+      }
+    }
   }
 }

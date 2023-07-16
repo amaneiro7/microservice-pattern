@@ -32,7 +32,7 @@ export default class UserServive {
     return data
   }
 
-  async getByName (email) {
+  async getByEmail (email) {
     const data = await store.User.findOne({
       where: { email }
     })

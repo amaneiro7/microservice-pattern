@@ -1,14 +1,21 @@
 import { Sequelize } from 'sequelize'
 import { config } from '../config/config.js'
-import SetupModels from '../../db/models/index.js'
+import SetupModels from './models/index.js'
 
-const URI = config.uri
-const dialect = config.dialect
+const options = {
+  dialect: config.dialect,
+  logging: config.isDev ? console.log : false
+}
 
-const sequelize = new Sequelize(URI, {
-  dialect,
-  logging: false
-})
+if (config.isProd) {
+  options.dialectOptions = {
+    ssl: {
+      rejectUnauthorized: false
+    }
+  }
+}
+
+const sequelize = new Sequelize(config.uri, options)
 
 SetupModels(sequelize)
 

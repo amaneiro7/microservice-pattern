@@ -1,5 +1,5 @@
+import response from '../middlewares/response.js'
 import validatorHandler from '../middlewares/validator.handler.js'
-import response from './response.js'
 
 export default function createRoute (router, dto, controller) {
   router.post('/', validatorHandler(dto.CreateDTO, 'body'), create)

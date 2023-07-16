@@ -4,12 +4,9 @@ import brand from '../components/brand/router.js'
 import brandModel from '../components/brandModel/router.js'
 import item from '../components/item/router.js'
 import { Router } from 'express'
-// import swaggerUi from 'swagger-ui-express'
-// import swaggerDocument from './swagger.json'
 
 const routes = (server) => {
   const router = Router()
-  // server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
   server.use('/api/v2', router)
   router.use('/user', user)
   router.use('/category', category)
