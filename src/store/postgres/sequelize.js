@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize'
-import { config } from '../config/config.js'
+import { config } from '../../config/index.js'
 import SetupModels from './models/index.js'
 
 const options = {
@@ -15,7 +15,7 @@ if (config.isProd) {
   }
 }
 
-const sequelize = new Sequelize(config.uri, options)
+const sequelize = new Sequelize(config.postgres.uri, options)
 
 SetupModels(sequelize)
 

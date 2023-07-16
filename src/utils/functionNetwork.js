@@ -10,7 +10,8 @@ export default function createRoute (router, dto, controller) {
   router.delete('/', validatorHandler(dto.GetDTO, 'params'), deleteData)
 
   function create (req, res, next) {
-    controller.create(req.body)
+    const payload = req.body
+    controller.create({ payload })
       .then(data => response.created({ req, res, data }))
       .catch(next)
   }
@@ -20,22 +21,27 @@ export default function createRoute (router, dto, controller) {
       .catch(next)
   }
   function getById (req, res, next) {
-    controller.getById(req.params.id)
+    const { id } = req.params
+    controller.getById({ id })
       .then(data => response.success({ req, res, data }))
       .catch(next)
   }
   function getByName (req, res, next) {
-    controller.getByName(req.params.name)
+    const { name } = req.params
+    controller.getByName({ name })
       .then(data => response.success({ req, res, data }))
       .catch(next)
   }
   function update (req, res, next) {
-    controller.update(req.params.id, req.body)
+    const { id } = req.params
+    const changes = req.body
+    controller.update({ id, changes })
       .then(data => response.updated({ req, res, data }))
       .catch(next)
   }
   function deleteData (req, res, next) {
-    controller.delete(req.params.id)
+    const { id } = req.params
+    controller.delete({ id })
       .then(data => response.deleted({ req, res, data }))
       .catch(next)
   }

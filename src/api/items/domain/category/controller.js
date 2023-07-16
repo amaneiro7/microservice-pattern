@@ -1,60 +1,49 @@
-import boom from '@hapi/boom'
-import sequelize from '../../../../store/sequelize.js'
-
-const store = sequelize.models
+import defaultStore from '../../../../store/dummy/dummy.store.js'
 
 export default class CategoryService {
-  // POST
-  async create (payload) {
-    const { name } = payload.toLowerCase()
-    const [data, created] = await store.Category.findOrCreate({
-      where: { name },
-      defaults: {
-        ...payload
-      }
-    })
-    if (!created) {
-      throw boom.conflict('Categoria ya existe en la BD')
-    }
+  constructor ({ InjectedStore, InjectedCache }) {
+    this.TABLE = 'category'
+    this.store = new InjectedStore() || defaultStore
+    this.cache = InjectedCache || defaultStore
+  }
 
-    return data
+  // POST
+  async create ({ payload }) {
+    return await this.store.create({ table: this.TABLE, payload })
   }
 
   // GetAll
   async getAll () {
-    return await store.Category.findAll()
+    //   let data = this.cache.getAll({ table: this.TABLE })
+
+    //   if (!data) {
+    //     console.log('No estaba en cache, Buscado en DB')
+    //     data = await this.store.getAll({ table: this.TABLE })
+    //     this.cache.update({ table: this.TABLE, data })
+    //   } else {
+    //     console.log('Nos traemos datos de cache')
+    //   }
+    //   return data
+    return await this.store.getAll({ table: this.TABLE })
   }
 
   // Get One By Id
-  async getById (id) {
-    const data = await store.Category.findByPk(id)
-    if (!data) {
-      throw boom.notFound('Categoria ya existe en la BD')
-    }
-    return data
+  async getById ({ id }) {
+    return await this.store.getById({ table: this.TABLE, id })
   }
 
   // Get One By Name
-  async getByName (name) {
-    const data = await store.Category.findOne({
-      where: { name }
-    })
-    if (!data) {
-      throw boom.notFound('Email no Existe')
-    }
-    return data
+  async getByName ({ name }) {
+    return await this.store.getById({ table: this.TABLE, name })
   }
 
   // PATCH
-  async update (id, changes) {
-    const data = await this.getById(id)
-    return await data.update(changes)
+  async update ({ id, changes }) {
+    return await this.store.update({ table: this.TABLE, id, changes })
   }
 
   // DELETE
-  async delete (id) {
-    const data = await this.getById(id)
-    await data.destroy()
-    return { id }
+  async remove ({ id }) {
+    return await this.store.remove({ table: this.TABLE, id })
   }
 }
