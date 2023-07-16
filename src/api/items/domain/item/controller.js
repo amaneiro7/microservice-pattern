@@ -1,6 +1,6 @@
 import boom from '@hapi/boom'
 import { Op } from 'sequelize'
-import sequelize from '../../libs/sequelize.js'
+import sequelize from '../../../../store/sequelize.js'
 
 const store = sequelize.models
 

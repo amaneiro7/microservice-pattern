@@ -1,13 +1,8 @@
-import { User } from '../../components/user/store.js'
-import { UserSchema } from '../../components/user/model.js'
-import { Category } from '../../components/category/store.js'
-import { CategorySchema } from '../../components/category/model.js'
-import { Item } from '../../components/item/store.js'
-import { ItemSchema } from '../../components/item/model.js'
-import { Brand } from '../../components/brand/store.js'
-import { BrandSchema } from '../../components/brand/model.js'
-import { BrandModel } from '../../components/brandModel/store.js'
-import { BrandModelSchema } from '../../components/brandModel/model.js'
+import { Category, CategorySchema } from './category.model.js'
+import { Item, ItemSchema } from './item.model.js'
+import { Brand, BrandSchema } from './brand.model.js'
+import { BrandModel, BrandModelSchema } from './brandModel.model.js'
+import { User, UserSchema } from './user.model.js'
 
 export default function SetupModels (sequelize) {
   Category.init(CategorySchema, Category.config(sequelize))

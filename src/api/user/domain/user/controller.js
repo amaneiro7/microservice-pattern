@@ -1,5 +1,5 @@
 import boom from '@hapi/boom'
-import store from '../../libs/sequelize.js'
+import store from '../../../../store/sequelize.js'
 import { hash } from 'bcrypt'
 
 export default class UserServive {

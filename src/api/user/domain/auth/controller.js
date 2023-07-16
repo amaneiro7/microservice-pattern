@@ -1,6 +1,6 @@
 import boom from '@hapi/boom'
 import { compare, hash } from 'bcrypt'
-import { sign, verify } from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 import { createTransport } from 'nodemailer'
 import { config } from '../../../../config/config.js'
 import Controller from '../user/controller.js'
@@ -26,7 +26,7 @@ export default class AuthServive {
       sub: user.id,
       role: user.role
     }
-    const accessToken = sign(payload, config.jwtSecret)
+    const accessToken = jwt.sign(payload, config.jwtSecret)
     return {
       user,
       access_token: accessToken
@@ -39,7 +39,7 @@ export default class AuthServive {
       throw boom.unauthorized()
     }
     const payload = { sub: user.id }
-    const token = sign(payload, config.jwtSecret, { expiresIn: expirationDate() })
+    const token = jwt.sign(payload, config.jwtSecret, { expiresIn: expirationDate() })
     const link = `http://myfrontend.com/recovery?token=${token}`
     await controller.update(user.id, { recoveryToken: token })
     const mail = {
@@ -53,7 +53,7 @@ export default class AuthServive {
 
   async changePassword ({ token, newPassword }) {
     try {
-      const payload = verify(token, config.jwtSecret)
+      const payload = jwt.verify(token, config.jwtSecret)
       const user = await controller.findOne(payload.sub)
       if (user.recoveryToken !== token) {
         throw boom.unauthorized()

@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import Controller from './controller.js'
-import { authenticate } from 'passport'
+import passport from 'passport'
 import response from '../../../../middlewares/response.js'
 import { LoginDTO, RecoveryDTO, ChangePasswordDTO } from './dto.js'
 import validatorHandler from '../../../../middlewares/validator.handler.js'
@@ -9,7 +9,7 @@ const router = Router()
 const controller = new Controller()
 
 // Routes
-router.post('/login', validatorHandler(LoginDTO, 'body'), authenticate('local', { session: false }), login)
+router.post('/login', validatorHandler(LoginDTO, 'body'), passport.authenticate('local', { session: false }), login)
 router.post('/recovery', validatorHandler(RecoveryDTO, 'body'), recovery)
 router.post('/change-password', validatorHandler(ChangePasswordDTO, 'body'), changePassword)
 

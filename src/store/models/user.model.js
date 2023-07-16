@@ -1,4 +1,7 @@
-import { DataTypes, Sequelize } from 'sequelize'
+import { Model, DataTypes, Sequelize } from 'sequelize'
+
+export const USER_TABLE = 'user'
+const modelName = 'User'
 
 export const UserSchema = {
   id: {
@@ -52,5 +55,18 @@ export const UserSchema = {
     type: DataTypes.DATE,
     field: 'created_at',
     defaultValue: Sequelize.NOW
+  }
+}
+
+export class User extends Model {
+  static associate () {}
+
+  static config (sequelize) {
+    return {
+      sequelize,
+      tableName: USER_TABLE,
+      modelName,
+      timestamps: false
+    }
   }
 }

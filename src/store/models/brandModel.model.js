@@ -1,6 +1,9 @@
-import { DataTypes, Sequelize } from 'sequelize'
-import { TABLE as BRAND_TABLE } from '../brand/store.js'
-import { TABLE as CATEGORY_TABLE } from '../category/store.js'
+import { Model, DataTypes, Sequelize } from 'sequelize'
+import { BRAND_TABLE } from './brand.model.js'
+import { CATEGORY_TABLE } from './category.model.js'
+
+export const BRAND_MODEL_TABLE = 'brandModel'
+const modelName = 'BrandModel'
 
 export const BrandModelSchema = {
   id: {
@@ -44,5 +47,25 @@ export const BrandModelSchema = {
     },
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL'
+  }
+}
+
+export class BrandModel extends Model {
+  static associate (models) {
+    this.belongsTo(models.Category, { as: 'category' }),
+    this.belongsTo(models.Brand, { as: 'brand' }),
+    this.hasMany(models.Item, {
+      as: 'Item',
+      foreignKey: 'modelId'
+    })
+  }
+
+  static config (sequelize) {
+    return {
+      sequelize,
+      tableName: BRAND_MODEL_TABLE,
+      modelName,
+      timestamps: false
+    }
   }
 }

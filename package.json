@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon src/index.js",
+    "dev:user": "nodemon src/api/user/user.index.js",
+    "dev:items": "nodemon src/api/items/items.index.js",
     "start": "node src/indx.js",
     "lint": "eslint",
     "migrations:generate": "sequelize-cli migration:generate --name",
