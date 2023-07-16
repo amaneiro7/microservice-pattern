@@ -10,4 +10,4 @@ if (config.remoteDB === false) {
   store = Localstore
 }
 
-export default new Controller({ InjectedStore: store, InjectedCache: cache, TABLE: 'category' })
+export default new Controller(store, cache, 'category' )

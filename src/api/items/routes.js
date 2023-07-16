@@ -1,8 +1,8 @@
 import { Router } from 'express'
+import category from './domain/category/router.js'
 import brand from './domain/brand/router.js'
 import brandModel from './domain//brandModel/router.js'
 import item from './domain/item/router.js'
-import category from './domain/category/router.js'
 import { config } from '../../config/index.js'
 
 const routes = (server) => {

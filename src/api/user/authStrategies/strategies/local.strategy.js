@@ -1,6 +1,5 @@
 import { Strategy } from 'passport-local'
-import Controller from '../../domain/auth/controller.js'
-const controller = new Controller()
+import controller from '../../domain/auth/index.js'
 
 export const LocalStrategy = new Strategy({
   usernameField: 'email',

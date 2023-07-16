@@ -1,7 +1,7 @@
 import DefaultStore from '../store/dummy/dummy.store.js'
 
 export default class ControllerModel {
-  constructor ({ InjectedStore, InjectedCache, TABLE }) {
+  constructor (InjectedStore, InjectedCache, TABLE) {    
     this.defaultStore = new DefaultStore()
     this.TABLE = TABLE
     this.store = new InjectedStore() || this.defaultStore

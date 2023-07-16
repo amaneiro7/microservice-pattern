@@ -1,7 +1,5 @@
 import { GraphQLLocalStrategy } from 'graphql-passport'
-import Controller from '../../domain/auth/controller.js'
-
-const controller = new Controller()
+import controller from '../../domain/auth/index.js'
 
 export const GQLLocalStrategy = new GraphQLLocalStrategy(
   async (email, password, done) => {

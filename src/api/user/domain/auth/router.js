@@ -1,12 +1,11 @@
 import { Router } from 'express'
-import Controller from './controller.js'
+import controller from './index.js'
 import passport from 'passport'
 import response from '../../../../middlewares/response.js'
 import { LoginDTO, RecoveryDTO, ChangePasswordDTO } from './dto.js'
 import validatorHandler from '../../../../middlewares/validator.handler.js'
 
 const router = Router()
-const controller = new Controller()
 
 // Routes
 router.post('/login', validatorHandler(LoginDTO, 'body'), passport.authenticate('local', { session: false }), login)

@@ -1,7 +1,7 @@
 import ControllerModel from '../../../../utils/functionController.js'
 export default class ItemController extends ControllerModel {
-  constructor ({ InjectedStore, InjectedCache, TABLE }) {
-    super({ InjectedStore, InjectedCache, TABLE })
+  constructor (InjectedStore, InjectedCache, TABLE) {
+    super(InjectedStore, InjectedCache, TABLE)
   }
 
   async create ({ payload }) {
