@@ -42,6 +42,11 @@ export const UserSchema = {
       }
     }
   },
+  recoveryToken: {
+    field: 'recovery_token',
+    allowNull: true,
+    type: DataTypes.STRING
+  },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,

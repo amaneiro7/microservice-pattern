@@ -1,20 +1,23 @@
 import boom from '@hapi/boom'
 import store from '../../libs/sequelize.js'
+import { hash } from 'bcrypt'
 
 export default class UserServive {
   // POST
   async create (payload) {
+    const hashPassword = await hash(payload.password, 10)
     const { email } = payload.toLowerCase()
     const [data, created] = await store.User.findOrCreate({
       where: { email },
       defaults: {
-        ...payload
+        ...payload,
+        password: hashPassword
       }
     })
     if (!created) {
       throw boom.conflict('Email ya se encuentra registrado')
     }
-
+    delete data.dataValues.password
     return data
   }
 

@@ -30,7 +30,7 @@ function recovery (req, res, next) {
 function changePassword (req, res, next) {
   const { token, newPassword } = req.body
   controller.changePassword({ token, newPassword })
-    .then(data => response.success(req, res, data))
+    .then(data => response.updated(req, res, data))
     .catch(next)
 }
 

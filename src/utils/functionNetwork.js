@@ -21,22 +21,22 @@ export default function createRoute (router, dto, controller) {
   }
   function getById (req, res, next) {
     controller.getById(req.params.id)
-      .then(data => res.status(200).json(data))
+      .then(data => response.success({ req, res, data }))
       .catch(next)
   }
   function getByName (req, res, next) {
     controller.getByName(req.params.name)
-      .then(data => res.status(201).json(data))
+      .then(data => response.success({ req, res, data }))
       .catch(next)
   }
   function update (req, res, next) {
     controller.update(req.params.id, req.body)
-      .then(data => res.status(201).json(data))
+      .then(data => response.updated({ req, res, data }))
       .catch(next)
   }
   function deleteData (req, res, next) {
     controller.delete(req.params.id)
-      .then(data => res.status(201).json(data))
+      .then(data => response.deleted({ req, res, data }))
       .catch(next)
   }
 }
