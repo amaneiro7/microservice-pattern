@@ -4,10 +4,10 @@ import validatorHandler from '../middlewares/validator.handler.js'
 export default function createRoute (router, dto, controller) {
   router.post('/', validatorHandler(dto.CreateDTO, 'body'), create)
   router.get('/', get)
-  router.get('/:id', validatorHandler(dto.GetDTO, 'params'), getById)
-  router.get('/:name', validatorHandler(dto.GetDTO, 'params'), getByName)
-  router.patch('/:id', validatorHandler(dto.GetDTO, 'params'), validatorHandler(dto.UpdateDTO, 'body'), update)
-  router.delete('/', validatorHandler(dto.GetDTO, 'params'), deleteData)
+  router.get('/:id', validatorHandler(dto.GetByIdDTO, 'params'), getById)
+  router.get('/name/:name', validatorHandler(dto.GetByNameDTO, 'params'), getByName)
+  router.patch('/:id', validatorHandler(dto.GetByIdDTO, 'params'), validatorHandler(dto.UpdateDTO, 'body'), update)
+  router.delete('/:id', validatorHandler(dto.GetByIdDTO, 'params'), deleteData)
 
   function create (req, res, next) {
     const payload = req.body
