@@ -1,6 +1,4 @@
 import Joi from 'joi'
-import { roles } from '../../../../utils/roles.js'
-console.log(roles)
 
 const id = Joi.number().integer()
 const name = Joi.string().min(3).max(15)

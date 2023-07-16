@@ -52,7 +52,7 @@ export default class UserServive {
   }
 
   // DELETE
-  async delete (id) {
+  async remove (id) {
     const data = await this.findOne(id)
     await data.destroy()
     return { id }
