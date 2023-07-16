@@ -1,6 +1,8 @@
+import { Op } from 'sequelize'
 import sequelize from './sequelize.js'
 import boom from '@hapi/boom'
 import { capitalizeFirstLetter } from '../../utils/capitalizeFirstLetter.js'
+import { formatStringPayload } from '../../utils/formatStringPayload.js'
 
 export default class PostgresStore {
   constructor () {
@@ -13,9 +15,10 @@ export default class PostgresStore {
     this.store = sequelize.models
   }
 
-  async create ({ payload, table }) {
+  async create ({ payload, table, uniqueEntry }) {
     const modelName = capitalizeFirstLetter(table)
-    const { name } = payload.toLowerCase()
+    let name = uniqueEntry
+    name = formatStringPayload()
     const [data, created] = await this.store[modelName].findOrCreate({
       where: { name },
       defaults: {
@@ -24,6 +27,35 @@ export default class PostgresStore {
     })
     if (!created) {
       throw boom.conflict(`${modelName} is already exist in DB`)
+    }
+
+    return data
+  }
+
+  async createItem ({ table, payload }) {
+    const modelName = capitalizeFirstLetter(table)
+    let { serial, activo } = payload
+    serial = formatStringPayload()
+    activo = formatStringPayload()
+    const [data, created] = await this.store[modelName].findOrCreate({
+      where: {
+        [Op.or]: [
+          { serial },
+          { serial: { [Op.eq]: null } },
+          { serial: { [Op.eq]: '' } }
+        ],
+        [Op.or]: [
+          { activo },
+          { activo: { [Op.eq]: null } },
+          { activo: { [Op.eq]: '' } }
+        ]
+      },
+      defaults: {
+        ...payload
+      }
+    })
+    if (!created) {
+      throw boom.conflict('El Serial y/o el Activo ya se encuentra registrado')
     }
 
     return data

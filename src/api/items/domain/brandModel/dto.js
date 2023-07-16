@@ -11,6 +11,10 @@ export const UpdateDTO = Joi.object({
   name
 })
 
-export const GetDTO = Joi.object({
+export const GetByIdDTO = Joi.object({
   id: id.required()
+})
+
+export const GetByNameDTO = Joi.object({
+  name: name.required()
 })

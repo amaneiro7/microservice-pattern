@@ -2,12 +2,12 @@ import boom from '@hapi/boom'
 import { compare, hash } from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { createTransport } from 'nodemailer'
-import { config } from '../../../../config/config.js'
+import { config } from '../../../../config/index.js'
 import Controller from '../user/controller.js'
 import { expirationDate } from '../../../../utils/expirationDate.js'
 const controller = new Controller()
 
-export default class AuthServive {
+export default class AuthController {
   async getUser ({ email, password }) {
     const user = await controller.getByEmail(email)
     if (!user) {

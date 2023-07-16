@@ -1,10 +1,10 @@
-import { config } from '../../config/config.js'
+import { config } from '../../config/index.js'
 import { createApp } from './app.js'
 
 (async () => {
   const app = await createApp()
-  app.listen(config.userPort, () => {
-    console.log('Api Items escuchando en el puerto ', config.userPort)
+  app.listen(config.user.port, () => {
+    console.log('Api User escuchando en el puerto ', config.user.port)
   })
 }
 )()

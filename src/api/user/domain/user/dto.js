@@ -23,6 +23,10 @@ export const UpdateDTO = Joi.object({
   role
 })
 
-export const GetDTO = Joi.object({
+export const GetByIdDTO = Joi.object({
   id: id.required()
+})
+
+export const GetByNameDTO = Joi.object({
+  name: email.required()
 })

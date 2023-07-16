@@ -1,11 +1,11 @@
 import { Router } from 'express'
-import Controller from './controller.js'
-import { CreateDTO, GetDTO, UpdateDTO } from './dto.js'
+import controller from './index.js'
+import { CreateDTO, GetByIdDTO, GetByNameDTO, UpdateDTO } from './dto.js'
 import createRoute from '../../../../utils/functionNetwork.js'
 
 const router = Router()
-const controller = new Controller()
+// const controller = new Controller()
 
-createRoute(router, { CreateDTO, GetDTO, UpdateDTO }, controller)
+createRoute(router, { CreateDTO, GetByIdDTO, GetByNameDTO, UpdateDTO }, controller)
 
 export default router

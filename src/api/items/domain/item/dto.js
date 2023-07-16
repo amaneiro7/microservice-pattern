@@ -29,6 +29,14 @@ export const UpdateDTO = Joi.object({
   modelId
 })
 
-export const GetDTO = Joi.object({
+export const GetByIdDTO = Joi.object({
   id: id.required()
+})
+
+export const GetBySerialDTO = Joi.object({
+  serial: serial.required()
+})
+
+export const GetByActvioDTO = Joi.object({
+  activo: activo.required()
 })
