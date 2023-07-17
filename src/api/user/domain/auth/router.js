@@ -12,24 +12,27 @@ router.post('/login', validatorHandler(LoginDTO, 'body'), passport.authenticate(
 router.post('/recovery', validatorHandler(RecoveryDTO, 'body'), recovery)
 router.post('/change-password', validatorHandler(ChangePasswordDTO, 'body'), changePassword)
 
-async function login (req, res, next) {
-  const { user } = req.user
-  controller.signToken({ user })
-    .then(data => response.success(req, res, data))
-    .catch(next)
+function login (req, res, next) {
+  try {
+    const user = req.user
+    const data = controller.signToken(user)
+    response.success({ req, res, data })
+  } catch (error) {
+    next(error)
+  }
 }
 
 function recovery (req, res, next) {
   const { email } = req.body
   controller.sendRecovery({ email })
-    .then(data => response.success(req, res, data))
+    .then(data => response.success({ req, res, data }))
     .catch(next)
 }
 
 function changePassword (req, res, next) {
   const { token, newPassword } = req.body
   controller.changePassword({ token, newPassword })
-    .then(data => response.updated(req, res, data))
+    .then(data => response.passwordUpdate({ req, res, data }))
     .catch(next)
 }
 

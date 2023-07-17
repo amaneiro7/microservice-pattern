@@ -7,6 +7,8 @@ const createApp = async () => {
   app.use(express.json())
   app.use(express.urlencoded({ extended: true }))
 
+  require('./authStrategies')
+
   routerApi(app)
 
   app.use(ormErrorHandler)

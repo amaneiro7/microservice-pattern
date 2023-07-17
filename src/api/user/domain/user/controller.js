@@ -24,10 +24,12 @@ class UserController extends ControllerModel {
     return data
   }
 
-  async getByEmail ({ email }) {
+  async getByEmail ({ email, isAuthController = false }) {
     const data = await this.store.getByName({ table: this.TABLE, field: 'email', value: email })
-    delete data.dataValues.password
-    delete data.dataValues.recoveryToken
+    if (!isAuthController) {
+      delete data.dataValues.password
+      delete data.dataValues.recoveryToken
+    }
     return data
   }
 }
