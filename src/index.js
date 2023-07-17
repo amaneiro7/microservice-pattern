@@ -1,7 +1,7 @@
-import express from 'express'
-import router from './network/routes.js'
-import { config } from './config/config.js'
-import { validateSequelizeConnection } from './middlewares/sequelizeConnection.js'
+const express = require('express')
+const router = require('./network/routes.js')
+const { config } = require('./config/config.js')
+const { validateSequelizeConnection } = require('./middlewares/sequelizeConnection.js')
 
 const app = express()
 router(app)

@@ -26,6 +26,12 @@ export const BrandModelSchema = {
     field: 'created_at',
     defaultValue: Sequelize.NOW
   },
+  updatedAt: {
+    allowNull: false,
+    type: DataTypes.DATE,
+    field: 'updated_at',
+    defaultValue: Sequelize.NOW
+  },
   brandId: {
     field: 'brand_id',
     allowNull: false,

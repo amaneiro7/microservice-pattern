@@ -45,6 +45,10 @@ export const UserSchema = {
       }
     }
   },
+  role: {
+    allowNull: false,
+    type: Sequelize.DataTypes.STRING
+  },
   recoveryToken: {
     field: 'recovery_token',
     allowNull: true,
@@ -54,6 +58,12 @@ export const UserSchema = {
     allowNull: false,
     type: DataTypes.DATE,
     field: 'created_at',
+    defaultValue: Sequelize.NOW
+  },
+  updatedAt: {
+    allowNull: false,
+    type: DataTypes.DATE,
+    field: 'updated_at',
     defaultValue: Sequelize.NOW
   }
 }

@@ -1,12 +1,12 @@
-import { config } from '../config/config.js'
+const { config } = require('../../config/index.js')
 
-export default {
+module.exports = {
   development: {
-    url: config.dbUrl,
+    url: config.postgres.uri,
     dialect: config.dialect
   },
   production: {
-    url: config.dbUrl,
+    url: config.postgres.uri,
     dialect: config.dialect,
     dialectOptions: {
       ssl: {

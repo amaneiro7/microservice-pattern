@@ -21,7 +21,7 @@ export const config = {
     port: process.env.ITEMS_PORT || 3002
   },
   postgres: {
-    uri: process.env.URI || `postgres://${postgresDB.user}:${postgresDB.password}@${postgresDB.host}:${postgresDB.port}/${postgresDB.name}`
+    uri: process.env.POSTGRES_DB_URI || `postgres://${postgresDB.user}:${postgresDB.password}@${postgresDB.host}:${postgresDB.port}/${postgresDB.name}`
   },
   redis: {
     host: process.env.REDIS_HOST || 'localhost',
