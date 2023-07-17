@@ -1,6 +1,6 @@
-import { Sequelize } from 'sequelize'
-import { config } from '../../config/index.js'
-import SetupModels from './models/index.js'
+const { Sequelize } = require('sequelize')
+const { config } = require('../../config/index.js')
+const SetupModels = require('./models/index.js')
 
 const options = {
   dialect: config.dialect,
@@ -19,4 +19,4 @@ const sequelize = new Sequelize(config.postgres.uri, options)
 
 SetupModels(sequelize)
 
-export default sequelize
+module.exports = sequelize

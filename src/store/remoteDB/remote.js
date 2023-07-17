@@ -1,4 +1,4 @@
-import axios from 'axios'
+const axios = require('axios')
 
 function createRemoteDB (host, port) {
   const remoteDataBaseCall = axios.create({
@@ -82,4 +82,4 @@ function createRemoteDB (host, port) {
   }
 }
 
-export default createRemoteDB
+module.exports = createRemoteDB

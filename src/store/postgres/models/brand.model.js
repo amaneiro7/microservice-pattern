@@ -1,9 +1,9 @@
-import { Model, DataTypes, Sequelize } from 'sequelize'
+const { Model, DataTypes, Sequelize } = require('sequelize')
 
-export const BRAND_TABLE = 'brand'
+const BRAND_TABLE = 'brand'
 const modelName = 'Brand'
 
-export const BrandSchema = {
+const BrandSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -32,7 +32,7 @@ export const BrandSchema = {
   }
 }
 
-export class Brand extends Model {
+class Brand extends Model {
   static associate (models) {
     this.hasMany(models.Item, {
       as: 'item',
@@ -52,4 +52,8 @@ export class Brand extends Model {
       timestamps: false
     }
   }
+}
+
+module.exports = {
+  BRAND_TABLE, Brand, BrandSchema
 }

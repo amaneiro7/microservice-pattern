@@ -1,8 +1,8 @@
-import boom from '@hapi/boom'
-import { config } from '../config/config.js'
-import { roles } from '../utils/roles.js'
+const boom = require('@hapi/boom')
+const { config } = require('../config/config.js')
+const { roles } = require('../utils/roles.js')
 
-export const checkApiKey = (req, res, next) => {
+const checkApiKey = (req, res, next) => {
   const apiKey = req.headers.api
   if (apiKey === config.apiKey) {
     next()
@@ -11,7 +11,7 @@ export const checkApiKey = (req, res, next) => {
   }
 }
 
-export const checkAdminRole = (req, res, next) => {
+const checkAdminRole = (req, res, next) => {
   const user = req.user
   if (user.role === roles.admin) {
     next()
@@ -20,11 +20,15 @@ export const checkAdminRole = (req, res, next) => {
   }
 }
 
-export const checkRoles = (...roles) => (req, res, next) => {
+const checkRoles = (...roles) => (req, res, next) => {
   const user = req.user
   if (roles.includes(user.role)) {
     next()
   } else {
     next(boom.unauthorized('your role is not allow'))
   }
+}
+
+module.export = {
+  checkApiKey, checkAdminRole, checkRoles
 }

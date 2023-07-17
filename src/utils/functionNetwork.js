@@ -1,7 +1,7 @@
-import response from '../middlewares/response.js'
-import validatorHandler from '../middlewares/validator.handler.js'
+const response = require('../middlewares/response.js')
+const validatorHandler = require('../middlewares/validator.handler.js')
 
-export default function createRoute (router, dto, controller) {
+function createRoute (router, dto, controller) {
   router.post('/', validatorHandler(dto.CreateDTO, 'body'), create)
   router.get('/', get)
   router.get('/:id', validatorHandler(dto.GetByIdDTO, 'params'), getById)
@@ -46,6 +46,8 @@ export default function createRoute (router, dto, controller) {
       .catch(next)
   }
 }
+
+module.exports = createRoute
 
 // Ejemplo de uso
 // const router = Router()

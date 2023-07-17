@@ -1,5 +1,5 @@
-import redis from 'redis'
-import { config } from '../../config'
+const redis = require('redis')
+const { config } = require('../../config')
 
 const client = redis.createClient({
   host: config.redis.host,
@@ -21,7 +21,7 @@ function getAll (table) {
   })
 }
 
-export default {
+module.exports = {
   getAll
 
 }

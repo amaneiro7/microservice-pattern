@@ -1,5 +1,5 @@
-import { config } from '../../config/index.js'
-import { createApp } from './app.js'
+const { config } = require('../../config/')
+const { createApp } = require('./app');
 
 (async () => {
   const app = await createApp()

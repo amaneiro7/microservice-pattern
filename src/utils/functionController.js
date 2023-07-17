@@ -1,7 +1,7 @@
-import DefaultStore from '../store/dummy/dummy.store.js'
+const DefaultStore = require('../store/dummy/dummy.store.js')
 
-export default class ControllerModel {
-  constructor (InjectedStore, InjectedCache, TABLE) {    
+class ControllerModel {
+  constructor (InjectedStore, InjectedCache, TABLE) {
     this.defaultStore = new DefaultStore()
     this.TABLE = TABLE
     this.store = new InjectedStore() || this.defaultStore
@@ -48,3 +48,5 @@ export default class ControllerModel {
     return await this.store.remove({ table: this.TABLE, id })
   }
 }
+
+module.exports = ControllerModel

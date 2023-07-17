@@ -1,7 +1,7 @@
-import { Router } from 'express'
-import { config } from '../config'
-import response from '../middlewares/response.js'
-import store from '../store/redis/redis.store.js'
+const { Router } = require('express')
+const { config } = require('../config')
+const response = require('../middlewares/response.js')
+const store = require('../store/redis/redis.store.js')
 
 const routes = (server) => {
   const router = Router()
@@ -41,4 +41,4 @@ async function remove (req, res, next) {
   response.remove({ req, res, data })
 }
 
-export default routes
+module.exports = routes

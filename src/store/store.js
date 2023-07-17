@@ -1,4 +1,4 @@
-export class Store {
+class Store {
   constructor () {
     this.db = []
   }
@@ -41,3 +41,5 @@ export class Store {
     delete this.db[table][indexToUpdate]
   }
 }
+
+module.exports = Store

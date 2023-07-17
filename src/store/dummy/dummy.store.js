@@ -1,10 +1,12 @@
-import { Store } from '../store.js'
+const Store = require('../store.js')
 
-export default class DummyStore extends Store {
+class DefaultStore extends Store {
   constructor () {
     super()
-    if (!DummyStore.instance) {
-      DummyStore.instance = this
+    if (!DefaultStore.instance) {
+      DefaultStore.instance = this
     }
   }
 }
+
+module.exports = DefaultStore

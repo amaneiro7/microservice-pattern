@@ -1,4 +1,4 @@
-import Joi from 'joi'
+const Joi = require('joi')
 
 const id = Joi.number().integer()
 const serial = Joi.string().allow(null, '').optional()
@@ -9,7 +9,7 @@ const categoryId = Joi.number().integer()
 const brandId = Joi.number().integer()
 const modelId = Joi.number().integer()
 
-export const CreateDTO = Joi.object({
+exports.CreateDTO = Joi.object({
   serial,
   activo,
   status: status.default(true),
@@ -19,7 +19,7 @@ export const CreateDTO = Joi.object({
   modelId: modelId.required()
 }).or('serial', 'activo')
 
-export const UpdateDTO = Joi.object({
+exports.UpdateDTO = Joi.object({
   serial,
   activo,
   status,
@@ -29,14 +29,14 @@ export const UpdateDTO = Joi.object({
   modelId
 })
 
-export const GetByIdDTO = Joi.object({
+exports.GetByIdDTO = Joi.object({
   id: id.required()
 })
 
-export const GetBySerialDTO = Joi.object({
+exports.GetBySerialDTO = Joi.object({
   serial: serial.required()
 })
 
-export const GetByActvioDTO = Joi.object({
+exports.GetByActvioDTO = Joi.object({
   activo: activo.required()
 })

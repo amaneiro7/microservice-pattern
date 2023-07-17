@@ -1,10 +1,10 @@
-import { Op } from 'sequelize'
-import sequelize from './sequelize.js'
-import boom from '@hapi/boom'
-import { capitalizeFirstLetter } from '../../utils/capitalizeFirstLetter.js'
-import { formatStringPayload } from '../../utils/formatStringPayload.js'
+const { Op } = require('sequelize')
+const sequelize = require('./sequelize.js')
+const boom = require('@hapi/boom')
+const { capitalizeFirstLetter } = require('../../utils/capitalizeFirstLetter.js')
+const { formatStringPayload } = require('../../utils/formatStringPayload.js')
 
-export default class PostgresStore {
+class PostgresStore {
   constructor () {
     if (!PostgresStore.instance) {
       PostgresStore.instance = this
@@ -111,3 +111,4 @@ export default class PostgresStore {
 //   update,
 //   remove
 // }
+module.exports = PostgresStore

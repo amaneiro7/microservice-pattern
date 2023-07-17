@@ -1,20 +1,20 @@
-import Joi from 'joi'
+const Joi = require('joi')
 
 const id = Joi.number().integer()
 const name = Joi.string()
 
-export const CreateDTO = Joi.object({
+exports.CreateDTO = Joi.object({
   name: name.required()
 })
 
-export const UpdateDTO = Joi.object({
+exports.UpdateDTO = Joi.object({
   name
 })
 
-export const GetByIdDTO = Joi.object({
+exports.GetByIdDTO = Joi.object({
   id: id.required()
 })
 
-export const GetByNameDTO = Joi.object({
+exports.GetByNameDTO = Joi.object({
   name: name.required()
 })

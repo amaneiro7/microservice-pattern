@@ -1,9 +1,9 @@
-import { Router } from 'express'
-import controller from './index.js'
-import passport from 'passport'
-import response from '../../../../middlewares/response.js'
-import { LoginDTO, RecoveryDTO, ChangePasswordDTO } from './dto.js'
-import validatorHandler from '../../../../middlewares/validator.handler.js'
+const { Router } = require('express')
+const controller = require('./index.js')
+const passport = require('passport')
+const response = require('../../../../middlewares/response.js')
+const { LoginDTO, RecoveryDTO, ChangePasswordDTO } = require('./dto.js')
+const validatorHandler = require('../../../../middlewares/validator.handler.js')
 
 const router = Router()
 
@@ -33,4 +33,4 @@ function changePassword (req, res, next) {
     .catch(next)
 }
 
-export default router
+module.exports = router

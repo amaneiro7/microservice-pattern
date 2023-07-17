@@ -1,7 +1,7 @@
-import { GraphQLLocalStrategy } from 'graphql-passport'
-import controller from '../../domain/auth/index.js'
+const { GraphQLLocalStrategy } = require('graphql-passport')
+const controller = require('../../domain/auth/index.js')
 
-export const GQLLocalStrategy = new GraphQLLocalStrategy(
+const GQLLocalStrategy = new GraphQLLocalStrategy(
   async (email, password, done) => {
     try {
       const user = await controller.getUser({ email, password })
@@ -11,3 +11,4 @@ export const GQLLocalStrategy = new GraphQLLocalStrategy(
     }
   }
 )
+module.exports = { GQLLocalStrategy }

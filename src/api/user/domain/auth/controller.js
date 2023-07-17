@@ -1,13 +1,12 @@
-import boom from '@hapi/boom'
-import jwt from 'jsonwebtoken'
-import controller from '../user/index.js'
-import { config } from '../../../../config/index.js'
-import { compare, hash } from 'bcrypt'
-import { createTransport } from 'nodemailer'
-import { expirationDate } from '../../../../utils/expirationDate.js'
+const boom = require('@hapi/boom')
+const jwt = require('jsonwebtoken')
+const controller = require('../user/index.js')
+const { config } = require('../../../../config/index.js')
+const { compare, hash } = require('bcrypt')
+const { createTransport } = require('nodemailer')
+const { expirationDate } = require('../../../../utils/expirationDate.js')
 
-
-export default class AuthController {  
+class AuthController {
   async getUser ({ email, password }) {
     const user = await controller.getByEmail(email)
     if (!user) {
@@ -84,3 +83,4 @@ export default class AuthController {
     }
   }
 }
+module.exports = AuthController

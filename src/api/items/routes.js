@@ -1,9 +1,9 @@
-import { Router } from 'express'
-import category from './domain/category/router.js'
-import brand from './domain/brand/router.js'
-import brandModel from './domain//brandModel/router.js'
-import item from './domain/item/router.js'
-import { config } from '../../config/index.js'
+const { Router } = require('express')
+const category = require('./domain/category/router.js')
+const brand = require('./domain/brand/router.js')
+const brandModel = require('./domain//brandModel/router.js')
+const item = require('./domain/item/router.js')
+const { config } = require('../../config/index.js')
 
 const routes = (server) => {
   const router = Router()
@@ -14,4 +14,4 @@ const routes = (server) => {
   router.use('/item', item)
 }
 
-export default routes
+module.exports = routes

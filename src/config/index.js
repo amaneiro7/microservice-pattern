@@ -1,4 +1,5 @@
-import 'dotenv/config'
+require('dotenv').config()
+
 const postgresDB = {
   user: process.env.POSTGRES_USER || 'appadmin',
   password: process.env.POSTGRES_PASS || 'Man12345.',
@@ -7,7 +8,7 @@ const postgresDB = {
   port: process.env.POSTGRES_PORT || 5432
 }
 
-export const config = {
+const config = {
   env: process.env.NODE_ENV || 'development',
   isProd: process.env.NODE_ENV === 'production',
   isDev: process.env.NODE_ENV === 'development',
@@ -36,9 +37,11 @@ export const config = {
     host: process.env.CACHE_SRV_HOST || 'localhost',
     port: process.env.CACHE_SRV_PORT || 3004
   },
-  dialect: process.env.DIALECT || 'postgres',
   apiKey: process.env.API_KEY,
   jwtSecret: process.env.JWT_SECRET,
   smtpEmail: process.env.SMTP_EMAIL,
   smtpPassword: process.env.SMTP_PASSWORD
+}
+module.exports = {
+  config
 }

@@ -1,13 +1,13 @@
-const { config } = require('../../config/index.js')
+const { config } = require('../../config/')
 
 module.exports = {
   development: {
     url: config.postgres.uri,
-    dialect: config.dialect
+    dialect: 'postgres'
   },
   production: {
     url: config.postgres.uri,
-    dialect: config.dialect,
+    dialect: 'postgres',
     dialectOptions: {
       ssl: {
         rejectUnauthorized: false

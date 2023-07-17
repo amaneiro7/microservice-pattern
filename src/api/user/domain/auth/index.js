@@ -1,3 +1,3 @@
-import Controller from './controller.js'
+const Controller = require('./controller.js')
 
-export default new Controller()
+module.exports = new Controller()

@@ -1,4 +1,4 @@
-import Remote from './remote.js'
-import config from '../config.js'
+const Remote = require('./remote.js')
+const config = require('../config.js')
 
-export default new Remote(config.mysqlService.host, config.mysqlService.port)
+module.exports = new Remote(config.mysqlService.host, config.mysqlService.port)

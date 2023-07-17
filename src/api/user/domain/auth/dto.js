@@ -1,4 +1,4 @@
-import Joi from 'joi'
+const Joi = require('joi')
 
 const email = Joi.string().trim().email()
 const token = Joi.string().trim().token()
@@ -9,15 +9,19 @@ const user = Joi.object({
   password: password.required()
 })
 
-export const LoginDTO = Joi.object({
+const LoginDTO = Joi.object({
   user: user.required()
 })
 
-export const RecoveryDTO = Joi.object({
+const RecoveryDTO = Joi.object({
   email: email.required()
 })
 
-export const ChangePasswordDTO = Joi.object({
+const ChangePasswordDTO = Joi.object({
   token: token.required(),
   newPassword: password.required()
 })
+
+module.exports = {
+  LoginDTO, RecoveryDTO, ChangePasswordDTO
+}

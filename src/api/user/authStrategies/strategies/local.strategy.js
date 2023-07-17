@@ -1,7 +1,7 @@
-import { Strategy } from 'passport-local'
-import controller from '../../domain/auth/index.js'
+const { Strategy } = require('passport-local')
+const controller = require('../../domain/auth/index.js')
 
-export const LocalStrategy = new Strategy({
+const LocalStrategy = new Strategy({
   usernameField: 'email',
   passwordField: 'password'
 },
@@ -14,3 +14,5 @@ async (email, password, done) => {
   }
 }
 )
+
+module.exports = { LocalStrategy }

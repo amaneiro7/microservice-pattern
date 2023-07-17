@@ -1,8 +1,8 @@
-import express from 'express'
-import routerApi from './routes.js'
-import { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } from '../../middlewares/error.handler.js'
+const express = require('express')
+const routerApi = require('./routes.js')
+const { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('../../middlewares/error.handler.js')
 
-export const createApp = async () => {
+const createApp = async () => {
   const app = express()
   app.use(express.json())
   app.use(express.urlencoded({ extended: true }))
@@ -19,3 +19,5 @@ export const createApp = async () => {
   app.use(errorHandler)
   return app
 }
+
+module.exports = { createApp }

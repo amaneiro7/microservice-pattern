@@ -1,6 +1,6 @@
-import ControllerModel from '../../../../utils/functionController.js'
-import { hash } from 'bcrypt'
-export default class UserController extends ControllerModel {
+const ControllerModel = require('../../../../utils/functionController.js')
+const { hash } = require('bcrypt')
+class UserController extends ControllerModel {
   constructor (InjectedStore, InjectedCache, TABLE) {
     super(InjectedStore, InjectedCache, TABLE)
   }
@@ -28,3 +28,4 @@ export default class UserController extends ControllerModel {
     return data
   }
 }
+module.exports = UserController

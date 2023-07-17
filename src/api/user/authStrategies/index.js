@@ -1,7 +1,7 @@
-import passport from 'passport'
-import { LocalStrategy } from './strategies/local.strategy.js'
-import { GQLLocalStrategy } from './strategies/local.gql.strategy.js'
-import { JwtStrategy } from './strategies/jwt.strategy.js'
+const passport = require('passport')
+const { LocalStrategy } = require('./strategies/local.strategy.js')
+const { GQLLocalStrategy } = require('./strategies/local.gql.strategy.js')
+const { JwtStrategy } = require('./strategies/jwt.strategy.js')
 
 passport.use(LocalStrategy)
 passport.use(JwtStrategy)

@@ -1,4 +1,4 @@
-import Joi from 'joi'
+const Joi = require('joi')
 
 const id = Joi.number().integer()
 const name = Joi.string().min(3).max(15)
@@ -7,7 +7,7 @@ const email = Joi.string().email()
 const role = Joi.string().valid('admin', 'editor', 'auditor', 'invitado')
 const password = Joi.string().pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{5,20}$/)
 
-export const CreateDTO = Joi.object({
+const CreateDTO = Joi.object({
   name: name.required(),
   lastname: lastname.required(),
   email: email.required(),
@@ -15,7 +15,7 @@ export const CreateDTO = Joi.object({
   password: password.required()
 })
 
-export const UpdateDTO = Joi.object({
+const UpdateDTO = Joi.object({
   name,
   lastname,
   email,
@@ -23,10 +23,14 @@ export const UpdateDTO = Joi.object({
   role
 })
 
-export const GetByIdDTO = Joi.object({
+const GetByIdDTO = Joi.object({
   id: id.required()
 })
 
-export const GetByNameDTO = Joi.object({
+const GetByNameDTO = Joi.object({
   name: email.required()
 })
+
+module.exports = {
+  CreateDTO, UpdateDTO, GetByIdDTO, GetByNameDTO
+}

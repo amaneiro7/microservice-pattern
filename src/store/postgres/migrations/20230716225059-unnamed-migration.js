@@ -1,9 +1,15 @@
 'use strict'
 
+const { CATEGORY_TABLE } = require('../models/category.model')
+const { ITEM_TABLE } = require('../models/item.model')
+const { BRAND_TABLE } = require('../models/brand.model')
+const { BRAND_MODEL_TABLE } = require('../models/brandModel.model')
+const { USER_TABLE } = require('../models/user.model')
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('user', {
+    await queryInterface.createTable(USER_TABLE, {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -12,38 +18,20 @@ module.exports = {
       },
       name: {
         allowNull: false,
-        type: Sequelize.DataTypes.STRING,
-        notNull: {
-          msg: 'Por favor ingrese su nombre'
-        }
+        type: Sequelize.DataTypes.STRING
       },
       lastname: {
         allowNull: false,
-        type: Sequelize.DataTypes.STRING,
-        notNull: {
-          msg: 'Por favor ingrese su apellido'
-        }
+        type: Sequelize.DataTypes.STRING
       },
       email: {
         allowNull: false,
         type: Sequelize.DataTypes.STRING,
-        unique: true,
-        validate: {
-          isEmail: true,
-          isLowerCase: true,
-          notNull: {
-            msg: 'Por favor ingrese su email'
-          }
-        }
+        unique: true
       },
       password: {
         allowNull: false,
-        type: Sequelize.DataTypes.STRING,
-        validate: {
-          notNull: {
-            msg: 'Por favor ingrese su contraseña'
-          }
-        }
+        type: Sequelize.DataTypes.STRING
       },
       role: {
         allowNull: false,
@@ -56,18 +44,18 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DataTypes.DATEONLYONLY,
+        type: Sequelize.DataTypes.DATEONLY,
         field: 'created_at',
         defaultValue: Sequelize.NOW
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DataTypes.DATEONLYONLY,
+        type: Sequelize.DataTypes.DATEONLY,
         field: 'updated_at',
         defaultValue: Sequelize.NOW
       }
     })
-    await queryInterface.createTable('category', {
+    await queryInterface.createTable(CATEGORY_TABLE, {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -94,7 +82,7 @@ module.exports = {
         defaultValue: Sequelize.NOW
       }
     })
-    await queryInterface.createTable('brand', {
+    await queryInterface.createTable(BRAND_TABLE, {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -122,7 +110,7 @@ module.exports = {
         defaultValue: Sequelize.NOW
       }
     })
-    await queryInterface.createTable('brandModel', {
+    await queryInterface.createTable(BRAND_MODEL_TABLE, {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -154,7 +142,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DataTypes.INTEGER,
         references: {
-          model: 'brand',
+          model: BRAND_TABLE,
           key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -165,14 +153,14 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DataTypes.INTEGER,
         references: {
-          model: 'category',
+          model: CATEGORY_TABLE,
           key: 'id'
         },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
       }
     })
-    await queryInterface.createTable('item', {
+    await queryInterface.createTable(ITEM_TABLE, {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -214,7 +202,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DataTypes.INTEGER,
         references: {
-          model: 'category',
+          model: CATEGORY_TABLE,
           key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -225,7 +213,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DataTypes.INTEGER,
         references: {
-          model: 'brand',
+          model: BRAND_TABLE,
           key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -236,7 +224,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DataTypes.INTEGER,
         references: {
-          model: 'brandModel',
+          model: BRAND_MODEL_TABLE,
           key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -246,10 +234,10 @@ module.exports = {
   },
 
   async down (queryInterface) {
-    await queryInterface.dropTable('user')
-    await queryInterface.dropTable('category')
-    await queryInterface.dropTable('brand')
-    await queryInterface.dropTable('brandModel')
-    await queryInterface.dropTable('item')
+    await queryInterface.dropTable(USER_TABLE)
+    await queryInterface.dropTable(CATEGORY_TABLE)
+    await queryInterface.dropTable(BRAND_TABLE)
+    await queryInterface.dropTable(BRAND_MODEL_TABLE)
+    await queryInterface.dropTable(ITEM_TABLE)
   }
 }

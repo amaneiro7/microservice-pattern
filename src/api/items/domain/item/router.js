@@ -1,15 +1,15 @@
-import { Router } from 'express'
-import controller from './index.js'
-import { CreateDTO, GetByIdDTO, GetByActvioDTO, GetBySerialDTO, UpdateDTO } from './dto.js'
-import createRoute from '../../../../utils/functionNetwork.js'
-import validatorHandler from '../../../../middlewares/validator.handler.js'
-import response from '../../../../middlewares/response.js'
+const { Router } = require('express')
+const controller = require('./index.js')
+const dto = require('./dto.js')
+const createRoute = require('../../../../utils/functionNetwork.js')
+const validatorHandler = require('../../../../middlewares/validator.handler.js')
+const response = require('../../../../middlewares/response.js')
 
 const router = Router()
 
-createRoute(router, { CreateDTO, GetByIdDTO, UpdateDTO }, controller)
-router.get('/serial/:serial', validatorHandler(GetBySerialDTO, 'params'), getBySerial)
-router.get('/activo/:activo', validatorHandler(GetByActvioDTO, 'params'), getByActivo)
+createRoute(router, dto, controller)
+router.get('/serial/:serial', validatorHandler(dto.GetBySerialDTO, 'params'), getBySerial)
+router.get('/activo/:activo', validatorHandler(dto.GetByActvioDTO, 'params'), getByActivo)
 
 function getBySerial (req, res, next) {
   const { serial } = req.params
@@ -25,4 +25,4 @@ function getByActivo (req, res, next) {
     .catch(next)
 }
 
-export default router
+module.exports = router

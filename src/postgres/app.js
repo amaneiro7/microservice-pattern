@@ -1,9 +1,13 @@
-import express from 'express'
-import routerApi from './routes.js'
+const express = require('express')
+const routerApi = require('./routes.js')
 
-export const createApp = async () => {
+const createApp = async () => {
   const app = express()
   app.use(express.json())
   routerApi(app)
   return app
+}
+
+module.exports = {
+  createApp
 }

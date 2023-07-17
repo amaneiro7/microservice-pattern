@@ -1,12 +1,12 @@
-import { Model, DataTypes, Sequelize } from 'sequelize'
-import { CATEGORY_TABLE } from './category.model.js'
-import { BRAND_TABLE } from './brand.model.js'
-import { BRAND_MODEL_TABLE } from './brandModel.model.js'
+const { Model, DataTypes, Sequelize } = require('sequelize')
+const { CATEGORY_TABLE } = require('./category.model.js')
+const { BRAND_TABLE } = require('./brand.model.js')
+const { BRAND_MODEL_TABLE } = require('./brandModel.model.js')
 
-export const ITEM_TABLE = 'item'
+const ITEM_TABLE = 'item'
 const modelName = 'Item'
 
-export const ItemSchema = {
+const ItemSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -78,7 +78,7 @@ export const ItemSchema = {
   }
 }
 
-export class Item extends Model {
+class Item extends Model {
   static associate (models) {
     this.belongsTo(models.Category, { as: 'category' }),
     this.belongsTo(models.Brand, { as: 'brand' }),
@@ -93,4 +93,8 @@ export class Item extends Model {
       timestamps: false
     }
   }
+}
+
+module.exports = {
+  Item, ITEM_TABLE, ItemSchema
 }

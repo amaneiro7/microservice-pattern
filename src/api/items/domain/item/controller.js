@@ -1,5 +1,5 @@
-import ControllerModel from '../../../../utils/functionController.js'
-export default class ItemController extends ControllerModel {
+const ControllerModel = require('../../../../utils/functionController.js')
+class ItemController extends ControllerModel {
   constructor (InjectedStore, InjectedCache, TABLE) {
     super(InjectedStore, InjectedCache, TABLE)
   }
@@ -16,3 +16,4 @@ export default class ItemController extends ControllerModel {
     return await this.store.getByName({ table: this.TABLE, name: activo })
   }
 }
+module.exports = ItemController

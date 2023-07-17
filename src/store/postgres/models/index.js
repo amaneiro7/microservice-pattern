@@ -1,10 +1,10 @@
-import { Category, CategorySchema } from './category.model.js'
-import { Item, ItemSchema } from './item.model.js'
-import { Brand, BrandSchema } from './brand.model.js'
-import { BrandModel, BrandModelSchema } from './brandModel.model.js'
-import { User, UserSchema } from './user.model.js'
+const { Category, CategorySchema } = require('./category.model.js')
+const { Item, ItemSchema } = require('./item.model.js')
+const { Brand, BrandSchema } = require('./brand.model.js')
+const { BrandModel, BrandModelSchema } = require('./brandModel.model.js')
+const { User, UserSchema } = require('./user.model.js')
 
-export default function SetupModels (sequelize) {
+function SetupModels (sequelize) {
   Category.init(CategorySchema, Category.config(sequelize))
   Item.init(ItemSchema, Item.config(sequelize))
   Brand.init(BrandSchema, Brand.config(sequelize))
@@ -17,3 +17,5 @@ export default function SetupModels (sequelize) {
   BrandModel.associate(sequelize.models)
   User.associate(sequelize.models)
 };
+
+module.exports = SetupModels

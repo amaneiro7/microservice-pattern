@@ -1,11 +1,11 @@
-import { Model, DataTypes, Sequelize } from 'sequelize'
-import { BRAND_TABLE } from './brand.model.js'
-import { CATEGORY_TABLE } from './category.model.js'
+const { Model, DataTypes, Sequelize } = require('sequelize')
+const { BRAND_TABLE } = require('./brand.model.js')
+const { CATEGORY_TABLE } = require('./category.model.js')
 
-export const BRAND_MODEL_TABLE = 'brandModel'
+const BRAND_MODEL_TABLE = 'brandModel'
 const modelName = 'BrandModel'
 
-export const BrandModelSchema = {
+const BrandModelSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -56,7 +56,7 @@ export const BrandModelSchema = {
   }
 }
 
-export class BrandModel extends Model {
+class BrandModel extends Model {
   static associate (models) {
     this.belongsTo(models.Category, { as: 'category' }),
     this.belongsTo(models.Brand, { as: 'brand' }),
@@ -74,4 +74,8 @@ export class BrandModel extends Model {
       timestamps: false
     }
   }
+}
+
+module.exports = {
+  BRAND_MODEL_TABLE, BrandModel, BrandModelSchema
 }

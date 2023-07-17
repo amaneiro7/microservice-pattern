@@ -1,9 +1,9 @@
-import { Model, DataTypes, Sequelize } from 'sequelize'
+const { Model, DataTypes, Sequelize } = require('sequelize')
 
-export const USER_TABLE = 'user'
+const USER_TABLE = 'user'
 const modelName = 'User'
 
-export const UserSchema = {
+const UserSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -68,7 +68,7 @@ export const UserSchema = {
   }
 }
 
-export class User extends Model {
+class User extends Model {
   static associate () {}
 
   static config (sequelize) {
@@ -79,4 +79,8 @@ export class User extends Model {
       timestamps: false
     }
   }
+}
+
+module.exports = {
+  User, USER_TABLE, UserSchema
 }
