@@ -13,7 +13,7 @@ module.exports = {
         name: 'admin',
         lastname: 'admin',
         email: 'admin@gmail.com',
-        password: await bcrypt.hash('admin123', 10),
+        password: await bcrypt.hash('Admin123', 10),
         role: 'admin',
         created_at: new Date(),
         updated_at: new Date()
@@ -22,7 +22,7 @@ module.exports = {
         name: 'editor',
         lastname: 'editor',
         email: 'editor@gmail.com',
-        password: await bcrypt.hash('editor123', 10),
+        password: await bcrypt.hash('Editor123', 10),
         role: 'editor',
         created_at: new Date(),
         updated_at: new Date()
@@ -31,7 +31,7 @@ module.exports = {
         name: 'auditor',
         lastname: 'auditor',
         email: 'auditor@gmail.com',
-        password: await bcrypt.hash('auditor123', 10),
+        password: await bcrypt.hash('Auditor123', 10),
         role: 'auditor',
         created_at: new Date(),
         updated_at: new Date()
@@ -40,7 +40,7 @@ module.exports = {
         name: 'invitado',
         lastname: 'invitado',
         email: 'invitado@gmail.com',
-        password: await bcrypt.hash('invitado123', 10),
+        password: await bcrypt.hash('Invitado123', 10),
         role: 'invitado',
         created_at: new Date(),
         updated_at: new Date()
