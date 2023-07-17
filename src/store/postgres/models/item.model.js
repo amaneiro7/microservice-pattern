@@ -44,7 +44,7 @@ const ItemSchema = {
     defaultValue: Sequelize.NOW
   },
   categoryId: {
-    field: 'categroy_id',
+    field: 'category_id',
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {
@@ -65,8 +65,8 @@ const ItemSchema = {
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL'
   },
-  modelId: {
-    field: 'model_id',
+  brandModelId: {
+    field: 'brand_model_id',
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {
@@ -82,7 +82,7 @@ class Item extends Model {
   static associate (models) {
     this.belongsTo(models.Category, { as: 'category' }),
     this.belongsTo(models.Brand, { as: 'brand' }),
-    this.belongsTo(models.BrandModel, { as: 'brandModel' })
+    this.belongsTo(models.BrandModel, { as: 'brand_model' })
   }
 
   static config (sequelize) {

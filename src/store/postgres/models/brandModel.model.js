@@ -2,7 +2,7 @@ const { Model, DataTypes, Sequelize } = require('sequelize')
 const { BRAND_TABLE } = require('./brand.model.js')
 const { CATEGORY_TABLE } = require('./category.model.js')
 
-const BRAND_MODEL_TABLE = 'brandModel'
+const BRAND_MODEL_TABLE = 'brand_model'
 const modelName = 'BrandModel'
 
 const BrandModelSchema = {
@@ -62,7 +62,7 @@ class BrandModel extends Model {
     this.belongsTo(models.Brand, { as: 'brand' }),
     this.hasMany(models.Item, {
       as: 'Item',
-      foreignKey: 'modelId'
+      foreignKey: 'brand_model_id'
     })
   }
 

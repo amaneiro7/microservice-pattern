@@ -18,7 +18,7 @@ class PostgresStore {
   async create ({ payload, table, uniqueEntry }) {
     const modelName = capitalizeFirstLetter(table)
     let name = uniqueEntry
-    name = formatStringPayload()
+    name = formatStringPayload(uniqueEntry)
     const [data, created] = await this.store[modelName].findOrCreate({
       where: { name },
       defaults: {
@@ -78,10 +78,11 @@ class PostgresStore {
   }
 
   // Get One By Name
-  async getByName ({ name, table }) {
+  async getByName ({ field = 'name', value, table }) {
     const modelName = capitalizeFirstLetter(table)
+
     const data = await this.store[modelName].findOne({
-      where: { name }
+      where: { [field]: value }
     })
     if (!data) {
       throw boom.notFound(`${modelName} does not exist`)

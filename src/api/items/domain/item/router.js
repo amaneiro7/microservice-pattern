@@ -13,14 +13,14 @@ router.get('/activo/:activo', validatorHandler(dto.GetByActvioDTO, 'params'), ge
 
 function getBySerial (req, res, next) {
   const { serial } = req.params
-  controller.getBySerial({ name: serial })
+  controller.getBySerial({ serial })
     .then(data => response.success({ req, res, data }))
     .catch(next)
 }
 
 function getByActivo (req, res, next) {
   const { activo } = req.params
-  controller.getByActivo({ name: activo })
+  controller.getByActivo({ activo })
     .then(data => response.success({ req, res, data }))
     .catch(next)
 }

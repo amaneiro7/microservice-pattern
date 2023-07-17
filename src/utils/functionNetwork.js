@@ -7,7 +7,7 @@ function createRoute (router, dto, controller) {
   router.get('/:id', validatorHandler(dto.GetByIdDTO, 'params'), getById)
   router.get('/name/:name', validatorHandler(dto.GetByNameDTO, 'params'), getByName)
   router.patch('/:id', validatorHandler(dto.GetByIdDTO, 'params'), validatorHandler(dto.UpdateDTO, 'body'), update)
-  router.delete('/:id', validatorHandler(dto.GetByIdDTO, 'params'), deleteData)
+  router.delete('/:id', validatorHandler(dto.GetByIdDTO, 'params'), remove)
 
   function create (req, res, next) {
     const payload = req.body
@@ -39,9 +39,9 @@ function createRoute (router, dto, controller) {
       .then(data => response.updated({ req, res, data }))
       .catch(next)
   }
-  function deleteData (req, res, next) {
+  function remove (req, res, next) {
     const { id } = req.params
-    controller.delete({ id })
+    controller.remove({ id })
       .then(data => response.deleted({ req, res, data }))
       .catch(next)
   }

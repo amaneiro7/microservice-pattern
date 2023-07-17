@@ -8,10 +8,10 @@ const { config } = require('../../config/index.js')
 const routes = (server) => {
   const router = Router()
   server.use(config.baseApiUrl, router)
-  router.use('/category', category)
-  router.use('/brand', brand)
-  router.use('/model', brandModel)
-  router.use('/item', item)
+  router.use('/categories', category)
+  router.use('/brands', brand)
+  router.use('/models', brandModel)
+  router.use('/items', item)
 }
 
 module.exports = routes

@@ -12,7 +12,9 @@ class UserController extends ControllerModel {
       password: hashPassword
     }
     const rta = await this.store.create({ table: this.TABLE, payload: data, uniqueEntry: payload.email })
+    console.log(rta)
     delete rta.dataValues.password
+    console.log(rta)
     return rta
   }
 
@@ -23,8 +25,9 @@ class UserController extends ControllerModel {
   }
 
   async getByEmail ({ email }) {
-    const data = await this.store.getByName({ table: this.TABLE, name: email })
+    const data = await this.store.getByName({ table: this.TABLE, field: 'email', value: email })
     delete data.dataValues.password
+    delete data.dataValues.recoveryToken
     return data
   }
 }

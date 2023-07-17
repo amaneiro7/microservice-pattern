@@ -1,7 +1,10 @@
 const { ValidationError } = require('sequelize')
 
 function logErrors (err, req, res, next) {
-  console.log(err)
+  console.log('[logErrors]', err)
+  res.status(500).json({
+    message: 'Internal Server'
+  })
   next(err)
 };
 

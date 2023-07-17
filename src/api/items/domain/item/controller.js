@@ -9,11 +9,11 @@ class ItemController extends ControllerModel {
   }
 
   async getBySerial ({ serial }) {
-    return await this.store.getByName({ table: this.TABLE, name: serial })
+    return await this.store.getByName({ table: this.TABLE, field: 'serial', value: serial })
   }
 
   async getByActivo ({ activo }) {
-    return await this.store.getByName({ table: this.TABLE, name: activo })
+    return await this.store.getByName({ table: this.TABLE, field: 'activo', value: activo })
   }
 }
 module.exports = ItemController

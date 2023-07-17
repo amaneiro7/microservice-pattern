@@ -198,7 +198,7 @@ module.exports = {
         defaultValue: Sequelize.NOW
       },
       categoryId: {
-        field: 'categroy_id',
+        field: 'category_id',
         allowNull: false,
         type: Sequelize.DataTypes.INTEGER,
         references: {
@@ -219,8 +219,8 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
       },
-      modelId: {
-        field: 'model_id',
+      brandModelId: {
+        field: 'brand_model_id',
         allowNull: false,
         type: Sequelize.DataTypes.INTEGER,
         references: {
@@ -234,10 +234,10 @@ module.exports = {
   },
 
   async down (queryInterface) {
-    await queryInterface.dropTable(USER_TABLE)
-    await queryInterface.dropTable(CATEGORY_TABLE)
-    await queryInterface.dropTable(BRAND_TABLE)
-    await queryInterface.dropTable(BRAND_MODEL_TABLE)
     await queryInterface.dropTable(ITEM_TABLE)
+    await queryInterface.dropTable(BRAND_MODEL_TABLE)
+    await queryInterface.dropTable(BRAND_TABLE)
+    await queryInterface.dropTable(CATEGORY_TABLE)
+    await queryInterface.dropTable(USER_TABLE)
   }
 }

@@ -10,7 +10,7 @@ class ControllerModel {
 
   // POST
   async create ({ payload }) {
-    return await this.store.create({ table: this.TABLE, payload })
+    return await this.store.create({ table: this.TABLE, payload, uniqueEntry: payload.name })
   }
 
   // GetAll
@@ -35,7 +35,7 @@ class ControllerModel {
 
   // Get One By Name
   async getByName ({ name }) {
-    return await this.store.getByName({ table: this.TABLE, name })
+    return await this.store.getByName({ table: this.TABLE, value: name })
   }
 
   // PATCH

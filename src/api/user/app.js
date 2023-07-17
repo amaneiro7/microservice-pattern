@@ -9,10 +9,10 @@ const createApp = async () => {
 
   routerApi(app)
 
-  app.use(logErrors)
   app.use(ormErrorHandler)
   app.use(boomErrorHandler)
   app.use(errorHandler)
+  app.use(logErrors)
   return app
 }
 

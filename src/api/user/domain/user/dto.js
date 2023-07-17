@@ -7,7 +7,7 @@ const email = Joi.string().email()
 const role = Joi.string().valid('admin', 'editor', 'auditor', 'invitado')
 const password = Joi.string().pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{5,20}$/)
 
-const CreateDTO = Joi.object({
+exports.CreateDTO = Joi.object({
   name: name.required(),
   lastname: lastname.required(),
   email: email.required(),
@@ -15,7 +15,7 @@ const CreateDTO = Joi.object({
   password: password.required()
 })
 
-const UpdateDTO = Joi.object({
+exports.UpdateDTO = Joi.object({
   name,
   lastname,
   email,
@@ -23,14 +23,10 @@ const UpdateDTO = Joi.object({
   role
 })
 
-const GetByIdDTO = Joi.object({
+exports.GetByIdDTO = Joi.object({
   id: id.required()
 })
 
-const GetByNameDTO = Joi.object({
-  name: email.required()
+exports.GetByEmailDTO = Joi.object({
+  email: email.required()
 })
-
-module.exports = {
-  CreateDTO, UpdateDTO, GetByIdDTO, GetByNameDTO
-}
